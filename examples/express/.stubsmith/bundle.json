@@ -1,0 +1,120 @@
+{
+  "cursor": "59",
+  "endpoints": [
+    {
+      "domain": "localhost:8081",
+      "fingerprint_value_paths": [],
+      "is_dynamic": true,
+      "method": "GET",
+      "path_template": "/api/orders/{id}",
+      "stubs": [
+        {
+          "content_type": null,
+          "degraded": false,
+          "field_rules": [
+            {
+              "action": "keep",
+              "path": "resp.order_id"
+            },
+            {
+              "action": "keep",
+              "path": "resp.status"
+            },
+            {
+              "action": "keep",
+              "path": "resp.total_cents"
+            },
+            {
+              "action": "keep",
+              "path": "resp.items.[].sku"
+            },
+            {
+              "action": "keep",
+              "path": "resp.items.[].qty"
+            },
+            {
+              "action": "keep",
+              "path": "resp.items.[].price_cents"
+            }
+          ],
+          "fingerprint": "fc552c95a0bb0d3e",
+          "key_paths": [],
+          "query_names": [],
+          "variants": [
+            {
+              "body": "{\"order_id\": 5234, \"status\": \"shipped\", \"items\": [{\"sku\": \"widget-pro\", \"qty\": 3, \"price_cents\": 2933}], \"total_cents\": 8799, \"customer_email\": \"<masked>\", \"created_at\": \"<masked>\"}",
+              "count": 2,
+              "duration_ms": 2,
+              "headers": {
+                "Content-Length": "206",
+                "Content-Type": "application/json; charset=utf-8",
+                "Date": "<masked>",
+                "Server": "<masked>"
+              },
+              "status": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "localhost:8081",
+      "fingerprint_value_paths": [],
+      "is_dynamic": true,
+      "method": "GET",
+      "path_template": "/api/users/{id}",
+      "stubs": [
+        {
+          "content_type": null,
+          "degraded": false,
+          "field_rules": [
+            {
+              "action": "keep",
+              "path": "resp.id"
+            },
+            {
+              "action": "keep",
+              "path": "resp.plan"
+            },
+            {
+              "action": "keep",
+              "path": "resp.active"
+            }
+          ],
+          "fingerprint": "fc552c95a0bb0d3e",
+          "key_paths": [],
+          "query_names": [],
+          "variants": [
+            {
+              "body": "{\"id\": 4821, \"name\": \"<masked>\", \"email\": \"<masked>\", \"plan\": \"pro\", \"active\": true, \"address\": {\"line1\": \"<masked>\", \"city\": \"<masked>\", \"postcode\": \"<masked>\"}, \"created_at\": \"<masked>\", \"last_login\": \"<masked>\"}",
+              "count": 2,
+              "duration_ms": 6,
+              "headers": {
+                "Content-Length": "261",
+                "Content-Type": "application/json; charset=utf-8",
+                "Date": "<masked>",
+                "Server": "<masked>"
+              },
+              "status": 200
+            },
+            {
+              "body": "{\"error\": \"<masked>\", \"code\": \"<masked>\"}",
+              "count": 2,
+              "duration_ms": 3,
+              "headers": {
+                "Content-Length": "53",
+                "Content-Type": "application/json; charset=utf-8",
+                "Date": "<masked>",
+                "Server": "<masked>"
+              },
+              "status": 404
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generated_at": "2026-08-24T14:28:09.310Z",
+  "ok": true,
+  "version": 1
+}

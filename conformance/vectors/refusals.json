@@ -1,0 +1,1984 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": true, \"id\": \"abc\"}",
+            "status": 201
+          }
+        ]
+      },
+      "name": "stored-201"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": true, \"pending\": true, \"id\": \"x\"}",
+            "status": 202
+          }
+        ]
+      },
+      "name": "pending-202"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": true, \"stored\": false, \"error\": \"body_too_large\"}",
+            "status": 202
+          }
+        ]
+      },
+      "name": "body-too-large-202-ok-true"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: fingerprint_limit_reached (HTTP 200). New endpoint shapes are not being recorded until the plan is upgraded or unused fingerprints are deleted in the dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"fingerprint_limit_reached\"}",
+            "status": 200
+          }
+        ]
+      },
+      "name": "fingerprint-limit-200"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: pii_leak (HTTP 422). The capture was quarantined because a value looked like personal data. Check the field rules and the project placeholder domain. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"pii_leak\"}",
+            "status": 422
+          }
+        ]
+      },
+      "name": "pii-leak"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: rejected (HTTP 422). This endpoint shape was rejected in the dashboard; nothing is recorded for it. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"rejected\": true}",
+            "status": 422
+          }
+        ]
+      },
+      "name": "rejected-true-422"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: dashboard_reject (HTTP 422). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"rejected\": true, \"reason\": \"dashboard_reject\"}",
+            "status": 422
+          }
+        ]
+      },
+      "name": "rejected-true-with-reason"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: malformed_payload (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"malformed_payload\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "malformed-payload-400"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: read_failed (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"read_failed\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "read-failed-400"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: sdk_required (HTTP 400). Upgrade the stubsmith SDK to a current version. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"sdk_required\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "sdk-required-400"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: payload_too_large (HTTP 413). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"payload_too_large\"}",
+            "status": 413
+          }
+        ]
+      },
+      "name": "payload-too-large-413"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: body_too_large (HTTP 202). The capture was over the size limit and was not recorded. Lower max_payload_bytes or exclude the endpoint. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"body_too_large\"}",
+            "status": 202
+          }
+        ]
+      },
+      "name": "body-too-large-ok-false"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: rate limit exceeded (HTTP 429). Captures are being sent faster than the plan allows; some are dropped. Reduce traffic or sample, or upgrade the plan. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"rate limit exceeded\"}",
+            "status": 429
+          }
+        ]
+      },
+      "name": "rate-limit-429"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: some_reason (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"reason\": \"some_reason\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-reason-only"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: e (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"e\", \"reason\": \"r\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-and-reason"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: unknown (HTTP 500). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false}",
+            "status": 500
+          }
+        ]
+      },
+      "name": "ok-false-nothing"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: r (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"\", \"reason\": \"r\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-empty-error-falls-to-reason"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: rejected (HTTP 400). This endpoint shape was rejected in the dashboard; nothing is recorded for it. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"\", \"rejected\": true}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-empty-error-rejected"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: unknown (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"rejected\": false}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-rejected-false"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: rejected (HTTP 400). This endpoint shape was rejected in the dashboard; nothing is recorded for it. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"rejected\": \"yes\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-rejected-truthy-string"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: unknown (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"rejected\": 0}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-rejected-zero"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: 42 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": 42}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-number"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: {'a': 1} (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": {\"a\": 1}}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-object"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: True (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": true}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-true"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: r (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": [], \"reason\": \"r\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-list-empty-falsy"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-80-chars"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-81-chars"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-200-chars"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: 😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\\ud83d\\ude00\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-nonascii-truncated"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: pii_leak                                                                         (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"pii_leak                                                                                \"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-error-80-then-remedy-lookup"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Something went wrong. Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": \"Something went wrong\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-with-message"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Done. Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": \"Done.\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-message-ends-with-period"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Why? Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": \"Why?\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-message-ends-with-question"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). No! Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": \"No!\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-message-ends-with-bang"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). padded. Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": \"  padded  \"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-message-whitespace-padded"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": \"   \"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-message-whitespace-only"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm. Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": \"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-message-250-chars"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"message\": 5}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-false-message-not-string"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: pii_leak (HTTP 422). A value matched. The capture was quarantined because a value looked like personal data. Check the field rules and the project placeholder domain. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"pii_leak\", \"message\": \"A value matched\"}",
+            "status": 422
+          }
+        ]
+      },
+      "name": "ok-false-known-code-with-message"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": true, \"error\": \"x\"}",
+            "status": 200
+          }
+        ]
+      },
+      "name": "ok-true-with-error"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"error\": \"x\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-missing"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": null, \"error\": \"x\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-null"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": 0, \"error\": \"x\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-zero"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": \"false\", \"error\": \"x\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "ok-string-false"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "[{\"ok\": false, \"error\": \"x\"}]",
+            "status": 400
+          }
+        ]
+      },
+      "name": "json-array"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "\"nope\"",
+            "status": 400
+          }
+        ]
+      },
+      "name": "json-string"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "null",
+            "status": 400
+          }
+        ]
+      },
+      "name": "json-null"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "Unauthorized",
+            "status": 401
+          }
+        ]
+      },
+      "name": "non-json-text"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "Internal Server Error",
+            "status": 500
+          }
+        ]
+      },
+      "name": "non-json-500"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "<html><body>bad gateway</body></html>",
+            "status": 502
+          }
+        ]
+      },
+      "name": "html-body"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "",
+            "status": 500
+          }
+        ]
+      },
+      "name": "empty-body"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "   \n",
+            "status": 500
+          }
+        ]
+      },
+      "name": "whitespace-body"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\"",
+            "status": 400
+          }
+        ]
+      },
+      "name": "truncated-json"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "﻿{\"ok\": false, \"error\": \"bom\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "json-with-bom"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: ws (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "  {\"ok\": false, \"error\": \"ws\"}\n",
+            "status": 400
+          }
+        ]
+      },
+      "name": "json-with-surrounding-whitespace"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: from_bytes (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": {
+              "bytes_hex": "7b226f6b223a2066616c73652c20226572726f72223a202266726f6d5f6279746573227d"
+            },
+            "status": 400
+          }
+        ]
+      },
+      "name": "bytes-body"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: bad� (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": {
+              "bytes_hex": "7b226f6b223a2066616c73652c20226572726f72223a2022626164ff227d"
+            },
+            "status": 400
+          }
+        ]
+      },
+      "name": "bytes-body-invalid-utf8-replaced"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: café (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": {
+              "bytes_hex": "7b226f6b223a2066616c73652c20226572726f72223a2022636166c3a9227d"
+            },
+            "status": 400
+          }
+        ]
+      },
+      "name": "bytes-body-nonascii"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": {
+              "none": true
+            },
+            "status": 400
+          }
+        ]
+      },
+      "name": "raw-none"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP unknown). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": null
+          }
+        ]
+      },
+      "name": "status-none"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP unknown). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": "400"
+          }
+        ]
+      },
+      "name": "status-string"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP True). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": true
+          }
+        ]
+      },
+      "name": "status-bool"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 0). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": 0
+          }
+        ]
+      },
+      "name": "status-zero"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused capture - status=200 body={\"ok\": false, \"error\": \"fingerprint_limit_reached\"}"
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: fingerprint_limit_reached (HTTP 200). New endpoint shapes are not being recorded until the plan is upgraded or unused fingerprints are deleted in the dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": true,
+            "raw": "{\"ok\": false, \"error\": \"fingerprint_limit_reached\"}",
+            "status": 200
+          }
+        ]
+      },
+      "name": "debug-logs-full-body"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused capture - status=400 body={\"ok\": false, \"error\": \"e\", \"pad\": \"pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp"
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: e (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": true,
+            "raw": "{\"ok\": false, \"error\": \"e\", \"pad\": \"pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "debug-long-body-truncated-2048"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": true,
+            "raw": "{\"ok\": true}",
+            "status": 200
+          }
+        ]
+      },
+      "name": "debug-non-refusal-silent"
+    },
+    {
+      "expected": {
+        "logs": []
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": true,
+            "raw": "oops",
+            "status": 500
+          }
+        ]
+      },
+      "name": "debug-non-json-silent"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused capture - status=400 body={\"ok\": false, \"error\": \"x\", \"m\": \"😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀\"}"
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": true,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"m\": \"😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "debug-nonascii-body"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": false,
+            "raw": "{\"ok\": false, \"error\": \"x\", \"pad\": \"pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "body-over-64k-not-truncated-here"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "dedupe-same-code-twice"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": 500
+          }
+        ]
+      },
+      "name": "dedupe-different-status-same-code"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "raw": "{\"ok\": false, \"error\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeA\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeB\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "dedupe-by-truncated-code"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused capture - status=400 body={\"ok\": false, \"error\": \"x\"}"
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: x (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused capture - status=400 body={\"ok\": false, \"error\": \"x\"}"
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "debug": true,
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": 400
+          },
+          {
+            "debug": true,
+            "raw": "{\"ok\": false, \"error\": \"x\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "dedupe-debug-logs-every-time"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: rejected (HTTP 422). This endpoint shape was rejected in the dashboard; nothing is recorded for it. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "raw": "{\"ok\": false, \"rejected\": true}",
+            "status": 422
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"rejected\"}",
+            "status": 422
+          }
+        ]
+      },
+      "name": "dedupe-rejected-vs-explicit-rejected-error"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: unknown (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "raw": "{\"ok\": false}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"unknown\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "dedupe-unknown-code"
+    },
+    {
+      "expected": {
+        "logs": [
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_000 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_001 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_002 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_003 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_004 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_005 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_006 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_007 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_008 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_009 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_010 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_011 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_012 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_013 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_014 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_015 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_016 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_017 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_018 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_019 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_020 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_021 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_022 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_023 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_024 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_025 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_026 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_027 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_028 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_029 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_030 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_031 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_032 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_033 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_034 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_035 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_036 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_037 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_038 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_039 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_040 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_041 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_042 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_043 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_044 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_045 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_046 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_047 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_048 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_049 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_050 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_051 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_052 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_053 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_054 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_055 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_056 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_057 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_058 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_059 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_060 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_061 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_062 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          },
+          {
+            "level": "WARNING",
+            "message": "stubsmith: ingest refused a capture: code_063 (HTTP 400). Check the project in the StubSmith dashboard. Reported once per process."
+          }
+        ]
+      },
+      "input": {
+        "calls": [
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_000\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_001\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_002\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_003\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_004\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_005\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_006\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_007\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_008\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_009\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_010\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_011\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_012\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_013\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_014\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_015\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_016\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_017\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_018\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_019\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_020\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_021\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_022\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_023\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_024\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_025\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_026\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_027\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_028\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_029\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_030\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_031\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_032\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_033\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_034\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_035\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_036\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_037\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_038\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_039\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_040\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_041\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_042\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_043\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_044\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_045\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_046\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_047\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_048\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_049\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_050\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_051\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_052\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_053\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_054\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_055\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_056\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_057\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_058\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_059\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_060\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_061\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_062\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_063\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_064\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_065\"}",
+            "status": 400
+          },
+          {
+            "raw": "{\"ok\": false, \"error\": \"code_000\"}",
+            "status": 400
+          }
+        ]
+      },
+      "name": "cap-64-codes"
+    }
+  ],
+  "description": "Ingest refusal reporting. Each case replays input.calls (raw is a text body, or {bytes_hex} for bytes, or {none:true}; status; debug) against a fresh warned-codes set and records every log record the SDK emits (level + formatted message). Warn once per code, at most 64 distinct codes.",
+  "source": "stubsmith.client._report_ingest_refusal"
+}

@@ -1,0 +1,1146 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "1",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-int-1"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "0",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-int-0"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "-5",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-int-negative"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "9223372036854775808",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-int-big"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "123456789012345678901234567890",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-int-huge"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "1.0",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-float-1.0"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "1.5",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-float-1.5"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "1e2",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-float-1e2"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "1E2",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-float-1E2"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "-0.5",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-float-neg"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "-0.0",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-float-neg-zero"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "1e-7",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-float-e-neg"
+    },
+    {
+      "expected": {
+        "label": null
+      },
+      "input": {
+        "json": "true",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-bool-true"
+    },
+    {
+      "expected": {
+        "label": null
+      },
+      "input": {
+        "json": "false",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-bool-false"
+    },
+    {
+      "expected": {
+        "label": null
+      },
+      "input": {
+        "json": "null",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-null"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "NaN",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-nan"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "Infinity",
+        "op": "classify_scalar"
+      },
+      "name": "scalar-infinity"
+    },
+    {
+      "expected": {
+        "label": "uuid"
+      },
+      "input": {
+        "json": "\"123e4567-e89b-12d3-a456-426614174000\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-uuid-lower"
+    },
+    {
+      "expected": {
+        "label": "uuid"
+      },
+      "input": {
+        "json": "\"123E4567-E89B-12D3-A456-426614174000\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-uuid-upper"
+    },
+    {
+      "expected": {
+        "label": "uuid"
+      },
+      "input": {
+        "json": "\"123e4567-e89b-12d3-a456-426614174000\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-uuid-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "email"
+      },
+      "input": {
+        "json": "\"alice@example.com\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-email"
+    },
+    {
+      "expected": {
+        "label": "email"
+      },
+      "input": {
+        "json": "\"a.b+c@sub.example.co\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-email-plus"
+    },
+    {
+      "expected": {
+        "label": "email"
+      },
+      "input": {
+        "json": "\"a@b.co\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-email-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"a@b\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-email-no-tld"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"a@b.c\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-email-short-tld"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\\u00e9@example.com\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-email-unicode-local"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"2024-01-31\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-date"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"2024-01-31T10:20:30Z\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-datetime-T"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"2024-01-31 10:20\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-datetime-space"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"2024-01-31\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-date-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"2024-01-31T10:20 garbage\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-datetime-prefix-only"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"2024-01-31x\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-date-garbage-suffix"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"\\uff12\\uff10\\uff12\\uff14-01-31\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-fullwidth-digits"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"\\u0662\\u0660\\u0662\\u0664-\\u0660\\u0661-\\u0663\\u0661\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-arabic-digits"
+    },
+    {
+      "expected": {
+        "label": "iso8601"
+      },
+      "input": {
+        "json": "\"2024-13-45\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-month-13"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"10:20:30\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iso-time-only"
+    },
+    {
+      "expected": {
+        "label": "e164"
+      },
+      "input": {
+        "json": "\"+31612345678\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-e164"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"+123456\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-e164-short"
+    },
+    {
+      "expected": {
+        "label": "e164"
+      },
+      "input": {
+        "json": "\"+1234567\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-e164-min7"
+    },
+    {
+      "expected": {
+        "label": "e164"
+      },
+      "input": {
+        "json": "\"+123456789012345\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-e164-max15"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"+1234567890123456\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-e164-16"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "\"31612345678\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-e164-no-plus"
+    },
+    {
+      "expected": {
+        "label": "e164"
+      },
+      "input": {
+        "json": "\"+31612345678\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-e164-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "iban"
+      },
+      "input": {
+        "json": "\"NL91ABNA0417164300\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iban"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"nl91abna0417164300\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iban-lower"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"EU20240001\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iban-short"
+    },
+    {
+      "expected": {
+        "label": "iban"
+      },
+      "input": {
+        "json": "\"NL91ABNA0417164300\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iban-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "iban"
+      },
+      "input": {
+        "json": "\"NO9386011117947\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-iban-min-15"
+    },
+    {
+      "expected": {
+        "label": "url"
+      },
+      "input": {
+        "json": "\"http://example.com\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-url-http"
+    },
+    {
+      "expected": {
+        "label": "url"
+      },
+      "input": {
+        "json": "\"https://example.com/a?b=1\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-url-https"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"HTTPS://example.com\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-url-upper"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"ftp://example.com\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-url-ftp"
+    },
+    {
+      "expected": {
+        "label": "url"
+      },
+      "input": {
+        "json": "\"https://\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-url-bare"
+    },
+    {
+      "expected": {
+        "label": "currency_code"
+      },
+      "input": {
+        "json": "\"EUR\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-currency"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"eur\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-currency-lower"
+    },
+    {
+      "expected": {
+        "label": "country_code"
+      },
+      "input": {
+        "json": "\"NL\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-country"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"nl\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-country-lower"
+    },
+    {
+      "expected": {
+        "label": "currency_code"
+      },
+      "input": {
+        "json": "\"EUR\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-currency-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "country_code"
+      },
+      "input": {
+        "json": "\"NL\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-country-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "\"42\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "\"-42\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-negative"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "\"007\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-zero-pad"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"+42\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-plus"
+    },
+    {
+      "expected": {
+        "label": "integer_id"
+      },
+      "input": {
+        "json": "\"42\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\\u0663\\u0664\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-unicode-digits"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\\u00b2\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-superscript"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\\u2167\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-roman"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\\uff11\\uff12\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-int-string-fullwidth"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "\"12.50\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-decimal-string"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "\"-0.5\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-decimal-string-negative"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\".5\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-decimal-string-no-int"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"5.\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-decimal-string-no-frac"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"1.2.3\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-decimal-string-two-dots"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"1e5\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-decimal-string-exp"
+    },
+    {
+      "expected": {
+        "label": "decimal_amount"
+      },
+      "input": {
+        "json": "\"1.5\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-decimal-string-trailing-newline"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"hello world\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-text"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-empty"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\" \"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-space"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"deadbeefdeadbeefdeadbeef\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-hex"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"AbC123xyz\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-mixed-case-token"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"caf\\u00e9\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-unicode"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\\ud83d\\ude00\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-emoji"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"Eur\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-three-letter-mixed"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"N1\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-two-letter-digit"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"\\n\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-newline-only"
+    },
+    {
+      "expected": {
+        "label": "free_text"
+      },
+      "input": {
+        "json": "\"123e4567e89b12d3a456426614174000\"",
+        "op": "classify_scalar"
+      },
+      "name": "string-free-uuid-no-dashes"
+    },
+    {
+      "expected": {
+        "label": null
+      },
+      "input": {
+        "json": "{\"a\":1}",
+        "op": "classify_scalar"
+      },
+      "name": "container-object"
+    },
+    {
+      "expected": {
+        "label": null
+      },
+      "input": {
+        "json": "[1]",
+        "op": "classify_scalar"
+      },
+      "name": "container-array"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "arr.[].p": "integer_id",
+          "cur": "currency_code",
+          "e": "decimal_amount",
+          "em": "email",
+          "f": "decimal_amount",
+          "i": "integer_id",
+          "id": "uuid",
+          "n": "integer_id",
+          "o.d": "iso8601",
+          "o.u": "url",
+          "s": "free_text",
+          "sc.[]": "integer_id"
+        }
+      },
+      "input": {
+        "body": "{\"i\":1,\"f\":1.0,\"e\":1e2,\"n\":-3,\"s\":\"hi\",\"em\":\"a@b.co\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"b\":true,\"z\":null,\"o\":{\"d\":\"2024-01-01\",\"u\":\"https://x.io\"},\"arr\":[{\"p\":\"12.50\"},{\"p\":\"7\"}],\"sc\":[\"a\",2],\"cur\":\"EUR\"}",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-types"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a.[].v": "free_text"
+        }
+      },
+      "input": {
+        "body": "{\"a\":[{\"v\":1},{\"v\":\"x\"},{\"v\":null},{\"v\":true}]}",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-array-last-wins"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a.[]": "decimal_amount"
+        }
+      },
+      "input": {
+        "body": "{\"a\":[1,\"x\",null,2.5]}",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-scalar-array-last-wins"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "{\"a\":true,\"b\":null,\"c\":[true,null]}",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-all-skipped"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "[]": "integer_id",
+          "[].a": "free_text"
+        }
+      },
+      "input": {
+        "body": "[{\"a\":\"x\"},3]",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-root-array"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "42",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-root-scalar"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "{\"a\":{},\"b\":[]}",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-empty-containers"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a": "free_text"
+        }
+      },
+      "input": {
+        "body": "{\"a\":1,\"a\":\"x\"}",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-dup-keys"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a.[].[]": "integer_id",
+          "a.[].[].b": "free_text"
+        }
+      },
+      "input": {
+        "body": "{\"a\":[[1,2],[{\"b\":\"x\"}]]}",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-nested-array-in-array"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a": "free_text"
+        }
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "text/plain",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-text-plain"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a": "free_text"
+        }
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "",
+        "op": "extract_value_types"
+      },
+      "name": "body-json-no-ct"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "{bad",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-invalid"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-empty"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "  ",
+        "content_type": "application/json",
+        "op": "extract_value_types"
+      },
+      "name": "body-whitespace"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a": "integer_id",
+          "b": "iso8601",
+          "c": "free_text",
+          "d": "email",
+          "e": "decimal_amount",
+          "f": "currency_code",
+          "g": "free_text",
+          "h": "e164"
+        }
+      },
+      "input": {
+        "body": "a=1&a=x&b=2024-01-01&c=&d=a%40b.co&e=1.5&f=EUR&g=hello+world&h=%2B31612345678",
+        "content_type": "application/x-www-form-urlencoded",
+        "op": "extract_value_types"
+      },
+      "name": "body-form-first-value"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "a=&b",
+        "content_type": "application/x-www-form-urlencoded",
+        "op": "extract_value_types"
+      },
+      "name": "body-form-blank"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "flag&x=1",
+        "content_type": "application/x-www-form-urlencoded",
+        "op": "extract_value_types"
+      },
+      "name": "body-form-bare-key"
+    },
+    {
+      "expected": {
+        "value_types": {
+          "a": "integer_id"
+        }
+      },
+      "input": {
+        "body": "a=1",
+        "content_type": "APPLICATION/X-WWW-FORM-URLENCODED; charset=utf-8",
+        "op": "extract_value_types"
+      },
+      "name": "body-form-ct-uppercase"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "application/x-www-form-urlencoded",
+        "op": "extract_value_types"
+      },
+      "name": "body-form-looks-like-json"
+    },
+    {
+      "expected": {
+        "value_types": {}
+      },
+      "input": {
+        "body": "Dear SECRET, your PIN is 1234",
+        "content_type": "application/x-www-form-urlencoded",
+        "op": "extract_value_types"
+      },
+      "name": "body-form-free-text"
+    }
+  ],
+  "description": "classify_scalar over JSON source tokens (input.json is parsed with json.loads, so 1 is int and 1.0/1e2 are float; label null means no label) and extract_value_types over JSON and form bodies. Note the SDK regexes use Python semantics: $ matches before a trailing newline and \\d in the ISO pattern matches Unicode digits.",
+  "source": "stubsmith.privacy.fingerprint.classify_scalar, extract_value_types"
+}

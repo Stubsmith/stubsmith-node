@@ -1,0 +1,1334 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {
+          "accept": "v-accept",
+          "accept-encoding": "v-accept-encoding",
+          "content-length": "v-content-length",
+          "content-type": "v-content-type",
+          "host": "v-host",
+          "transfer-encoding": "v-transfer-encoding"
+        },
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {
+          "accept": "v-accept",
+          "accept-encoding": "v-accept-encoding",
+          "content-length": "v-content-length",
+          "content-type": "v-content-type",
+          "host": "v-host",
+          "transfer-encoding": "v-transfer-encoding"
+        },
+        "query": ""
+      },
+      "name": "headers-allowlist-all"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {
+          "Authorization": "<masked>",
+          "Cookie": "<masked>",
+          "Set-Cookie": "<masked>",
+          "X-Api-Key": "<masked>"
+        },
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {
+          "Authorization": "Bearer abc",
+          "Cookie": "s=1",
+          "Set-Cookie": "a=b",
+          "X-Api-Key": "k"
+        },
+        "query": ""
+      },
+      "name": "headers-not-allowlisted"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {
+          "ACCEPT": "*/*",
+          "AUTHORIZATION": "<masked>",
+          "Authorization": "<masked>",
+          "CONTENT-LENGTH": "12",
+          "Content-Type": "application/json",
+          "Host": "h",
+          "User-AGENT": "<masked>",
+          "cache-CONTROL": "<masked>"
+        },
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {
+          "ACCEPT": "*/*",
+          "AUTHORIZATION": "y",
+          "Authorization": "x",
+          "CONTENT-LENGTH": "12",
+          "Content-Type": "application/json",
+          "Host": "h",
+          "User-AGENT": "ua",
+          "cache-CONTROL": "no-cache"
+        },
+        "query": ""
+      },
+      "name": "headers-case-variations"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {
+          "Accept": "",
+          "X-Empty": "<masked>"
+        },
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {
+          "Accept": "",
+          "X-Empty": ""
+        },
+        "query": ""
+      },
+      "name": "headers-empty-value"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {
+          "Content-Length": 12,
+          "X-Num": "<masked>"
+        },
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {
+          "Content-Length": 12,
+          "X-Num": 5
+        },
+        "query": ""
+      },
+      "name": "headers-nonstring-values"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {
+          "content-type ": "<masked>",
+          "content_type": "<masked>",
+          "x-content-type": "<masked>"
+        },
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {
+          "content-type ": "a",
+          "content_type": "c",
+          "x-content-type": "b"
+        },
+        "query": ""
+      },
+      "name": "headers-lookalike-names"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\", \"b\": \"<masked>\"}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":\"x\",\"b\":\"y\"}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-strings"
+    },
+    {
+      "expected": {
+        "body": "{\"i\": 0, \"f\": 0, \"n\": 0, \"e\": 0, \"big\": 0}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"i\":1,\"f\":1.5,\"n\":-3,\"e\":1e16,\"big\":9223372036854775808}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-numbers"
+    },
+    {
+      "expected": {
+        "body": "{\"t\": false, \"f\": false}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-bools"
+    },
+    {
+      "expected": {
+        "body": "{\"n\": null}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"n\":null}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-nulls"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": {\"b\": {\"c\": \"<masked>\", \"d\": [0, \"<masked>\", null, false, {\"e\": 0}]}}}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":{\"b\":{\"c\":\"x\",\"d\":[1,\"y\",null,true,{\"e\":2.5}]}}}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-nested"
+    },
+    {
+      "expected": {
+        "body": "[0, \"<masked>\", null, false, [0], {\"k\": \"<masked>\"}]",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "[1,\"a\",null,false,[2],{\"k\":\"v\"}]",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-arrays-root"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": {}, \"b\": [], \"c\": [[]]}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":{},\"b\":[],\"c\":[[]]}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-empty-containers"
+    },
+    {
+      "expected": {
+        "body": "\"<masked>\"",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "\"hello\"",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-root-string"
+    },
+    {
+      "expected": {
+        "body": "0",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "42",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-root-int"
+    },
+    {
+      "expected": {
+        "body": "0",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "1.5",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-root-float"
+    },
+    {
+      "expected": {
+        "body": "null",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "null",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-root-null"
+    },
+    {
+      "expected": {
+        "body": "false",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "true",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-root-true"
+    },
+    {
+      "expected": {
+        "body": "{\"caf\\u00e9\": \"<masked>\", \"\\ud83d\\ude00\": \"<masked>\", \"\\u65e5\\u672c\": 0}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"café\":\"x\",\"😀\":\"y\",\"日本\":1}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-nonascii-keys"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\"}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":\"café 😀\"}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-nonascii-values"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\", \"b\": \"<masked>\"}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":1,\"b\":\"x\",\"a\":\"y\"}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-dup-keys"
+    },
+    {
+      "expected": {
+        "body": "{\"z\": 0, \"a\": 0, \"m\": {\"y\": 0, \"b\": 0}}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"z\":1,\"a\":2,\"m\":{\"y\":1,\"b\":2}}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-key-order-preserved"
+    },
+    {
+      "expected": {
+        "body": "{\"b\": 0, \"2\": 0, \"1\": 0}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"b\":1,\"2\":1,\"1\":1}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-numeric-like-keys"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": 0, \"b\": 0}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":NaN,\"b\":Infinity}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-nan"
+    },
+    {
+      "expected": {
+        "body": "{\"a\\\"b\": \"<masked>\", \"c\\\\d\": \"<masked>\", \"e\\nf\": \"<masked>\", \"tab\\t\": 0, \"\\u0001\": 0, \"\\u2028\": 0, \"\\u007f\": 0}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\\\"b\":\"x\",\"c\\\\d\":\"y\",\"e\\nf\":\"z\",\"tab\\t\":1,\"\\u0001\":2,\"\\u2028\":3,\"\\u007f\":4}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-escaped-keys"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\", \"b\": [0, 0]}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "  {\n  \"a\" :  \"x\" ,\n \"b\": [ 1 , 2 ]\n}  ",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-whitespace-formatted"
+    },
+    {
+      "expected": {
+        "body": "{\"\": \"<masked>\"}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"\":\"x\"}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-empty-key"
+    },
+    {
+      "expected": {
+        "body": "{}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-empty-object"
+    },
+    {
+      "expected": {
+        "body": "[]",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "[]",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-empty-array"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\"}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-body-no-ct"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\"}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-body-text-plain"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\"}",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "application/json; charset=utf-8",
+        "headers": {},
+        "query": ""
+      },
+      "name": "json-body-ct-charset"
+    },
+    {
+      "expected": {
+        "body": "a=%3Cmasked%3E&b=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1&b=2",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-basic"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=&b=&c",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-blank"
+    },
+    {
+      "expected": {
+        "body": "a=%3Cmasked%3E&a=%3Cmasked%3E&a=%3Cmasked%3E&b=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1&a=2&a=3&b=4",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-repeated"
+    },
+    {
+      "expected": {
+        "body": "a+b=%3Cmasked%3E&e+f=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a+b=c+d&e%20f=%41",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-plus-percent"
+    },
+    {
+      "expected": {
+        "body": "a=%3Cmasked%3E&b=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1&&b=2&",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-empty-segments"
+    },
+    {
+      "expected": {
+        "body": "a=%3Cmasked%3E&c=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1;b=2&c=3",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-semicolon"
+    },
+    {
+      "expected": {
+        "body": "caf%C3%A9=%3Cmasked%3E&%F0%9F%98%80=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "caf%C3%A9=1&%F0%9F%98%80=2",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-unicode-key"
+    },
+    {
+      "expected": {
+        "body": "a%5B%5D=%3Cmasked%3E&a%5B%5D=%3Cmasked%3E&b%5Bx%5D=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a[]=1&a[]=2&b[x]=3",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-brackets"
+    },
+    {
+      "expected": {
+        "body": "a%2Fb=%3Cmasked%3E&c~d=%3Cmasked%3E&e%21f=%3Cmasked%3E&g%2Ah=%3Cmasked%3E&i%27j=%3Cmasked%3E&k%28l%29=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a/b=1&c~d=2&e!f=3&g*h=4&i'j=5&k(l)=6",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-special-key-chars"
+    },
+    {
+      "expected": {
+        "body": "a%2Bb=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a%2Bb=1",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-plus-in-key"
+    },
+    {
+      "expected": {
+        "body": "a%3Db=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a%3Db=1",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-equals-in-key"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-looks-like-json"
+    },
+    {
+      "expected": {
+        "body": "",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-empty-body"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "   ",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-whitespace"
+    },
+    {
+      "expected": {
+        "body": "",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "&&",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-only-ampersand"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "Dear SECRET, your PIN is 1234",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-free-text"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1&Dear SECRET",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-free-text-after-pair"
+    },
+    {
+      "expected": {
+        "body": "a%25zz=%3Cmasked%3E&%EF%BF%BD=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a%zz=1&%E9=2",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-invalid-percent"
+    },
+    {
+      "expected": {
+        "body": "a=%3Cmasked%3E&b=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1&b=2",
+        "content_type": "APPLICATION/X-WWW-FORM-URLENCODED; charset=utf-8",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-ct-uppercase"
+    },
+    {
+      "expected": {
+        "body": "a=%3Cmasked%3E",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1",
+        "content_type": " application/x-www-form-urlencoded ",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-ct-spaces"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "a=1&b=2",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "form-body-json-ct"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "hello world",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-text"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "hello world",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-text-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-truncated-json"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-truncated-json-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "<a>1</a>",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-xml"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "<a>1</a>",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-xml-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "iVBORw0KGgo=",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-base64"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "iVBORw0KGgo=",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-base64-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{'a':1}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-single-quotes"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{'a':1}",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-single-quotes-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":1,}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-trailing-comma"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":1,}",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-trailing-comma-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "﻿{\"a\":1}",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-leading-bom"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "﻿{\"a\":1}",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-leading-bom-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":1} x",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-trailing-garbage"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "{\"a\":1} x",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "unparseable-trailing-garbage-text-plain"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "empty-body-json-ct"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": ""
+      },
+      "name": "empty-body-no-ct"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "text/plain",
+        "headers": {},
+        "query": ""
+      },
+      "name": "empty-body-text-plain"
+    },
+    {
+      "expected": {
+        "body": "",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "application/x-www-form-urlencoded",
+        "headers": {},
+        "query": ""
+      },
+      "name": "empty-body-form-ct"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "   ",
+        "content_type": "application/json",
+        "headers": {},
+        "query": ""
+      },
+      "name": "whitespace-body-json-ct"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "rawbytes",
+        "content_type": "image/png",
+        "headers": {},
+        "query": ""
+      },
+      "name": "image-ct-with-body"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a=1&b=2"
+      },
+      "name": "query-basic"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": ""
+      },
+      "name": "query-empty"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a=&b"
+      },
+      "name": "query-blank"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a=%3Cmasked%3E&a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a=1&a=2&b=3"
+      },
+      "name": "query-repeated"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a+b=%3Cmasked%3E&e+f=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a+b=c+d&e%20f=%41"
+      },
+      "name": "query-plus-percent"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a=1&&b=2&"
+      },
+      "name": "query-empty-segments"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a=1;b=2"
+      },
+      "name": "query-semicolon"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "caf%C3%A9=%3Cmasked%3E&%F0%9F%98%80=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "caf%C3%A9=1&%F0%9F%98%80=2"
+      },
+      "name": "query-unicode"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a%5B%5D=%3Cmasked%3E&a%5B%5D=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a[]=1&a[]=2"
+      },
+      "name": "query-brackets"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": ""
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "&&"
+      },
+      "name": "query-only-ampersand"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "%3Fa=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "?a=1"
+      },
+      "name": "query-leading-qmark"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a%2Fb=%3Cmasked%3E&c~d=%3Cmasked%3E&e%21f=%3Cmasked%3E&g%2Ah=%3Cmasked%3E&i%27j=%3Cmasked%3E&k%28l%29=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a/b=1&c~d=2&e!f=3&g*h=4&i'j=5&k(l)=6"
+      },
+      "name": "query-special-chars"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a%25zz=%3Cmasked%3E&%EF%BF%BD=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a%zz=1&%E9=2"
+      },
+      "name": "query-invalid-percent"
+    },
+    {
+      "expected": {
+        "body": "<masked>",
+        "headers": {},
+        "query": "a%3Db=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "headers": {},
+        "query": "a%3Db=1"
+      },
+      "name": "query-equals-in-key"
+    },
+    {
+      "expected": {
+        "body": "{\"a\": \"<masked>\"}",
+        "headers": {
+          "Accept": "*/*",
+          "Authorization": "<masked>"
+        },
+        "query": "k=%3Cmasked%3E&k=%3Cmasked%3E"
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "application/json",
+        "headers": {
+          "Accept": "*/*",
+          "Authorization": "t"
+        },
+        "query": "k=v&k=w"
+      },
+      "name": "combined"
+    }
+  ],
+  "description": "mask_all fail-closed masking. Output bodies are Python json.dumps text (default separators ', ' and ': ', ensure_ascii=True) or urlencode(doseq=True) text; compare byte-exact if byte-identical output is required.",
+  "source": "stubsmith.privacy.masking.mask_all"
+}

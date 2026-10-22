@@ -1,0 +1,708 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "hex": "e4a6a0577479b2b4"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "",
+        "utf8_bytes": 0
+      },
+      "name": "empty-none-8"
+    },
+    {
+      "expected": {
+        "hex": "cae66941d9efbd404e4d88758ea67670"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "",
+        "utf8_bytes": 0
+      },
+      "name": "empty-none-16"
+    },
+    {
+      "expected": {
+        "hex": "a90b28fee47c03ff"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "",
+        "utf8_bytes": 0
+      },
+      "name": "empty-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "c67daf24106883bfad145c1bb3b3457a"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "",
+        "utf8_bytes": 0
+      },
+      "name": "empty-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "59923de3c050f5ad"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "",
+        "utf8_bytes": 0
+      },
+      "name": "empty-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "2ae6b02df83c8d5a85eb7ab86fe3a11f"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "",
+        "utf8_bytes": 0
+      },
+      "name": "empty-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "a7b6eda801e5347d"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "hello",
+        "utf8_bytes": 5
+      },
+      "name": "ascii-none-8"
+    },
+    {
+      "expected": {
+        "hex": "46fb7408d4f285228f4af516ea25851b"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "hello",
+        "utf8_bytes": 5
+      },
+      "name": "ascii-none-16"
+    },
+    {
+      "expected": {
+        "hex": "45c31812752414e9"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "hello",
+        "utf8_bytes": 5
+      },
+      "name": "ascii-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "afab30d4e0f3dd2d4342a3f05f2dff03"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "hello",
+        "utf8_bytes": 5
+      },
+      "name": "ascii-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "01cb364f21a304b2"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "hello",
+        "utf8_bytes": 5
+      },
+      "name": "ascii-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "599730d69b33d20d805dc780f8a1476a"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "hello",
+        "utf8_bytes": 5
+      },
+      "name": "ascii-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "fc552c95a0bb0d3e"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "||",
+        "utf8_bytes": 2
+      },
+      "name": "pipes-none-8"
+    },
+    {
+      "expected": {
+        "hex": "342260148ea91a9f21cdb20f620265ac"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "||",
+        "utf8_bytes": 2
+      },
+      "name": "pipes-none-16"
+    },
+    {
+      "expected": {
+        "hex": "a9e49e0fd972a860"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "||",
+        "utf8_bytes": 2
+      },
+      "name": "pipes-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "2614b56a8d3becf6078ff6e0cc8db069"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "||",
+        "utf8_bytes": 2
+      },
+      "name": "pipes-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "c2aaf2016cc0572c"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "||",
+        "utf8_bytes": 2
+      },
+      "name": "pipes-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "0635cc70e3bced81442a024c19db7fd5"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "||",
+        "utf8_bytes": 2
+      },
+      "name": "pipes-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "5efef57b3d88acd4"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "café naïve",
+        "utf8_bytes": 12
+      },
+      "name": "nonascii-latin-none-8"
+    },
+    {
+      "expected": {
+        "hex": "37aab256dc96b0894a171643b008f822"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "café naïve",
+        "utf8_bytes": 12
+      },
+      "name": "nonascii-latin-none-16"
+    },
+    {
+      "expected": {
+        "hex": "afbb77767b5a09cc"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "café naïve",
+        "utf8_bytes": 12
+      },
+      "name": "nonascii-latin-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "9e952f7026a03e6e2ef788f1ec6322b5"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "café naïve",
+        "utf8_bytes": 12
+      },
+      "name": "nonascii-latin-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "3cc75900002eb8de"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "café naïve",
+        "utf8_bytes": 12
+      },
+      "name": "nonascii-latin-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "3e5fc04b6d1869c96706aaf0254dba47"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "café naïve",
+        "utf8_bytes": 12
+      },
+      "name": "nonascii-latin-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "f419edd5d4267b48"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "日本語",
+        "utf8_bytes": 9
+      },
+      "name": "cjk-none-8"
+    },
+    {
+      "expected": {
+        "hex": "7ce831c0ff398dc29f79baf7b2a79592"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "日本語",
+        "utf8_bytes": 9
+      },
+      "name": "cjk-none-16"
+    },
+    {
+      "expected": {
+        "hex": "5ded7831ae4a7019"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "日本語",
+        "utf8_bytes": 9
+      },
+      "name": "cjk-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "cad1eff60329599eb9fc76fd9ac9703b"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "日本語",
+        "utf8_bytes": 9
+      },
+      "name": "cjk-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "1d7b4dc636867673"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "日本語",
+        "utf8_bytes": 9
+      },
+      "name": "cjk-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "ad7f07b7c1a40676f072d9f6e4d0dd26"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "日本語",
+        "utf8_bytes": 9
+      },
+      "name": "cjk-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "d9eccd6d7706019e"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "😀 emoji",
+        "utf8_bytes": 10
+      },
+      "name": "astral-none-8"
+    },
+    {
+      "expected": {
+        "hex": "c65172a4ed4e0b17f1ddda002f3becc0"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "😀 emoji",
+        "utf8_bytes": 10
+      },
+      "name": "astral-none-16"
+    },
+    {
+      "expected": {
+        "hex": "c0f0415e58cda2f0"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "😀 emoji",
+        "utf8_bytes": 10
+      },
+      "name": "astral-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "98aaa3f1a9473ddd0f1b5b0df383be67"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "😀 emoji",
+        "utf8_bytes": 10
+      },
+      "name": "astral-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "b04c7b0660269f42"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "😀 emoji",
+        "utf8_bytes": 10
+      },
+      "name": "astral-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "4bc328d61fae0ebb470fd37d998aacb9"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "😀 emoji",
+        "utf8_bytes": 10
+      },
+      "name": "astral-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "b40af6d2f2f34472"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "utf8_bytes": 200
+      },
+      "name": "a200-none-8"
+    },
+    {
+      "expected": {
+        "hex": "d63a46941ee0449fd1a7292005e08096"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "utf8_bytes": 200
+      },
+      "name": "a200-none-16"
+    },
+    {
+      "expected": {
+        "hex": "3983c0e356562a1e"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "utf8_bytes": 200
+      },
+      "name": "a200-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "93446451e3cd7db918f67f41978f291c"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "utf8_bytes": 200
+      },
+      "name": "a200-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "6744770391683427"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "utf8_bytes": 200
+      },
+      "name": "a200-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "457b71af6e195f39750ab03c0b0954e6"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "utf8_bytes": 200
+      },
+      "name": "a200-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "54878fbeebad984a"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "utf8_bytes": 1000
+      },
+      "name": "b1000-none-8"
+    },
+    {
+      "expected": {
+        "hex": "8a7cb6d1270e282d26200c073d5c1c77"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "utf8_bytes": 1000
+      },
+      "name": "b1000-none-16"
+    },
+    {
+      "expected": {
+        "hex": "9cd634f8e6122b64"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "utf8_bytes": 1000
+      },
+      "name": "b1000-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "07673985d6a2d5aca1925fda1e2b4650"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "utf8_bytes": 1000
+      },
+      "name": "b1000-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "1be2053f74fe8453"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "utf8_bytes": 1000
+      },
+      "name": "b1000-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "fda7e0af16a4b8db94e7bf9a43a3ddbe"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "utf8_bytes": 1000
+      },
+      "name": "b1000-key64-16"
+    },
+    {
+      "expected": {
+        "hex": "1e4594fd8de5d608"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "utf8_bytes": 44
+      },
+      "name": "sample-raw-none-8"
+    },
+    {
+      "expected": {
+        "hex": "369de2bd686311ab57c060352b0e220c"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "",
+        "key_utf8": null,
+        "text": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "utf8_bytes": 44
+      },
+      "name": "sample-raw-none-16"
+    },
+    {
+      "expected": {
+        "hex": "53c3f031158262af"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "utf8_bytes": 44
+      },
+      "name": "sample-raw-salt-8"
+    },
+    {
+      "expected": {
+        "hex": "a5e8762718e8cfde005810b69ddac257"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "73616c74",
+        "key_utf8": "salt",
+        "text": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "utf8_bytes": 44
+      },
+      "name": "sample-raw-salt-16"
+    },
+    {
+      "expected": {
+        "hex": "a758e345be5a2aa0"
+      },
+      "input": {
+        "digest_size": 8,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "utf8_bytes": 44
+      },
+      "name": "sample-raw-key64-8"
+    },
+    {
+      "expected": {
+        "hex": "70447c1fa31fac2e67d22e7436459488"
+      },
+      "input": {
+        "digest_size": 16,
+        "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+        "key_utf8": null,
+        "text": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "utf8_bytes": 44
+      },
+      "name": "sample-raw-key64-16"
+    }
+  ],
+  "description": "BLAKE2b digests of UTF-8 text, unkeyed and keyed (key_hex empty means unkeyed).",
+  "source": "hashlib.blake2b"
+}

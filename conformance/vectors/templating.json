@@ -1,0 +1,1215 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 3,
+            "template": "/users/me/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/me"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders/{oid}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          },
+          {
+            "literal_count": 0,
+            "template": "/{a}/{b}"
+          }
+        ],
+        "template": "/users/{id}"
+      },
+      "input": {
+        "path": "/users/5",
+        "templates": [
+          "/users/{id}",
+          "/users/{id}/orders",
+          "/users/me/orders",
+          "/users/{id}/orders/{oid}",
+          "/{a}/{b}",
+          "/users/me"
+        ]
+      },
+      "name": "curated-wildcard"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 3,
+            "template": "/users/me/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/me"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders/{oid}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          },
+          {
+            "literal_count": 0,
+            "template": "/{a}/{b}"
+          }
+        ],
+        "template": "/users/me"
+      },
+      "input": {
+        "path": "/users/me",
+        "templates": [
+          "/users/{id}",
+          "/users/{id}/orders",
+          "/users/me/orders",
+          "/users/{id}/orders/{oid}",
+          "/{a}/{b}",
+          "/users/me"
+        ]
+      },
+      "name": "curated-literal-beats-wildcard"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 3,
+            "template": "/users/me/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/me"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders/{oid}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          },
+          {
+            "literal_count": 0,
+            "template": "/{a}/{b}"
+          }
+        ],
+        "template": "/users/me/orders"
+      },
+      "input": {
+        "path": "/users/me/orders",
+        "templates": [
+          "/users/{id}",
+          "/users/{id}/orders",
+          "/users/me/orders",
+          "/users/{id}/orders/{oid}",
+          "/{a}/{b}",
+          "/users/me"
+        ]
+      },
+      "name": "curated-literal-count-ordering"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 3,
+            "template": "/users/me/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/me"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders/{oid}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          },
+          {
+            "literal_count": 0,
+            "template": "/{a}/{b}"
+          }
+        ],
+        "template": "/users/{id}/orders"
+      },
+      "input": {
+        "path": "/users/77/orders",
+        "templates": [
+          "/users/{id}",
+          "/users/{id}/orders",
+          "/users/me/orders",
+          "/users/{id}/orders/{oid}",
+          "/{a}/{b}",
+          "/users/me"
+        ]
+      },
+      "name": "curated-wildcard-mid"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 3,
+            "template": "/users/me/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/me"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders/{oid}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          },
+          {
+            "literal_count": 0,
+            "template": "/{a}/{b}"
+          }
+        ],
+        "template": "/users/{id}/orders/{oid}"
+      },
+      "input": {
+        "path": "/users/1/orders/2",
+        "templates": [
+          "/users/{id}",
+          "/users/{id}/orders",
+          "/users/me/orders",
+          "/users/{id}/orders/{oid}",
+          "/{a}/{b}",
+          "/users/me"
+        ]
+      },
+      "name": "curated-three-segments"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 3,
+            "template": "/users/me/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/me"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders/{oid}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          },
+          {
+            "literal_count": 0,
+            "template": "/{a}/{b}"
+          }
+        ],
+        "template": "/{a}/{b}"
+      },
+      "input": {
+        "path": "/foo/bar",
+        "templates": [
+          "/users/{id}",
+          "/users/{id}/orders",
+          "/users/me/orders",
+          "/users/{id}/orders/{oid}",
+          "/{a}/{b}",
+          "/users/me"
+        ]
+      },
+      "name": "curated-generic-two-segments"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 3,
+            "template": "/users/me/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/me"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders"
+          },
+          {
+            "literal_count": 2,
+            "template": "/users/{id}/orders/{oid}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          },
+          {
+            "literal_count": 0,
+            "template": "/{a}/{b}"
+          }
+        ],
+        "template": "/foo/bar/baz/{id}"
+      },
+      "input": {
+        "path": "/foo/bar/baz/123",
+        "templates": [
+          "/users/{id}",
+          "/users/{id}/orders",
+          "/users/me/orders",
+          "/users/{id}/orders/{oid}",
+          "/{a}/{b}",
+          "/users/me"
+        ]
+      },
+      "name": "curated-no-match-falls-back"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          }
+        ],
+        "template": "/users"
+      },
+      "input": {
+        "path": "/users",
+        "templates": [
+          "/users/{id}"
+        ]
+      },
+      "name": "curated-mismatch-too-few"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          }
+        ],
+        "template": "/users/{id}/{id}"
+      },
+      "input": {
+        "path": "/users/1/2",
+        "templates": [
+          "/users/{id}"
+        ]
+      },
+      "name": "curated-mismatch-too-many"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/x/{a}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/x/{b}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/{a}/y"
+          }
+        ],
+        "template": "/x/{a}"
+      },
+      "input": {
+        "path": "/x/y",
+        "templates": [
+          "/x/{b}",
+          "/{a}/y",
+          "/x/{a}"
+        ]
+      },
+      "name": "tie-lexicographic"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/a/{x}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/b/{x}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/{x}/b"
+          }
+        ],
+        "template": "/a/{x}"
+      },
+      "input": {
+        "path": "/a/b",
+        "templates": [
+          "/b/{x}",
+          "/a/{x}",
+          "/{x}/b"
+        ]
+      },
+      "name": "tie-lexicographic-literal"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 2,
+            "template": "/p/q/{x}"
+          },
+          {
+            "literal_count": 2,
+            "template": "/p/{x}/r"
+          },
+          {
+            "literal_count": 2,
+            "template": "/{x}/q/r"
+          }
+        ],
+        "template": "/p/q/{x}"
+      },
+      "input": {
+        "path": "/p/q/r",
+        "templates": [
+          "/p/{x}/r",
+          "/{x}/q/r",
+          "/p/q/{x}"
+        ]
+      },
+      "name": "tie-same-literal-count-different-position"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/u/{userId}"
+          }
+        ],
+        "template": "/u/{userId}"
+      },
+      "input": {
+        "path": "/u/9",
+        "templates": [
+          "/u/{userId}"
+        ]
+      },
+      "name": "wildcard-named-camel"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 2,
+            "template": "/u/{}"
+          }
+        ],
+        "template": "/u/{id}"
+      },
+      "input": {
+        "path": "/u/9",
+        "templates": [
+          "/u/{}"
+        ]
+      },
+      "name": "wildcard-empty-braces-not-wildcard"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 2,
+            "template": "/u/{}"
+          }
+        ],
+        "template": "/u/{}"
+      },
+      "input": {
+        "path": "/u/{}",
+        "templates": [
+          "/u/{}"
+        ]
+      },
+      "name": "wildcard-empty-braces-literal-match"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 2,
+            "template": "/u/{a{b}}"
+          }
+        ],
+        "template": "/u/{id}"
+      },
+      "input": {
+        "path": "/u/9",
+        "templates": [
+          "/u/{a{b}}"
+        ]
+      },
+      "name": "wildcard-nested-braces-not-wildcard"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 2,
+            "template": "/u/id-{id}"
+          }
+        ],
+        "template": "/u/id-9"
+      },
+      "input": {
+        "path": "/u/id-9",
+        "templates": [
+          "/u/id-{id}"
+        ]
+      },
+      "name": "wildcard-partial-not-wildcard"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/u/{id}"
+          }
+        ],
+        "template": "/u/{id}"
+      },
+      "input": {
+        "path": "/u/é",
+        "templates": [
+          "/u/{id}"
+        ]
+      },
+      "name": "wildcard-matches-anything-incl-unicode"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          }
+        ],
+        "template": "/users/{id}"
+      },
+      "input": {
+        "path": "/users/5/",
+        "templates": [
+          "/users/{id}"
+        ]
+      },
+      "name": "trailing-slash-path"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/users/{id}/"
+          }
+        ],
+        "template": "/users/{id}/"
+      },
+      "input": {
+        "path": "/users/5",
+        "templates": [
+          "/users/{id}/"
+        ]
+      },
+      "name": "trailing-slash-template"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          }
+        ],
+        "template": "/users/{id}"
+      },
+      "input": {
+        "path": "/users//5",
+        "templates": [
+          "/users/{id}"
+        ]
+      },
+      "name": "double-slash-path"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "//users//{id}//"
+      },
+      "input": {
+        "path": "//users//123//",
+        "templates": []
+      },
+      "name": "double-slash-path-heuristic"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "users/{id}"
+          }
+        ],
+        "template": "users/{id}"
+      },
+      "input": {
+        "path": "/users/5",
+        "templates": [
+          "users/{id}"
+        ]
+      },
+      "name": "template-without-leading-slash"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 0,
+            "template": "/{x}/{y}"
+          }
+        ],
+        "template": "/{x}/{y}"
+      },
+      "input": {
+        "path": "/a/b",
+        "templates": [
+          "/{x}/{y}"
+        ]
+      },
+      "name": "template-all-wildcards"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 0,
+            "template": "/"
+          }
+        ],
+        "template": "/"
+      },
+      "input": {
+        "path": "/",
+        "templates": [
+          "/"
+        ]
+      },
+      "name": "template-root"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 0,
+            "template": ""
+          }
+        ],
+        "template": ""
+      },
+      "input": {
+        "path": "",
+        "templates": [
+          ""
+        ]
+      },
+      "name": "template-empty-string"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          }
+        ],
+        "template": "/"
+      },
+      "input": {
+        "path": "/",
+        "templates": [
+          "/users/{id}"
+        ]
+      },
+      "name": "path-root-with-curated"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/users/{id}"
+          }
+        ],
+        "template": "/Users/{id}"
+      },
+      "input": {
+        "path": "/Users/5",
+        "templates": [
+          "/users/{id}"
+        ]
+      },
+      "name": "case-sensitive-literal"
+    },
+    {
+      "expected": {
+        "sorted_templates": [
+          {
+            "literal_count": 1,
+            "template": "/a/{id}"
+          },
+          {
+            "literal_count": 1,
+            "template": "/a/{id}"
+          }
+        ],
+        "template": "/a/{id}"
+      },
+      "input": {
+        "path": "/a/1",
+        "templates": [
+          "/a/{id}",
+          "/a/{id}"
+        ]
+      },
+      "name": "duplicate-templates"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/orders/{id}"
+      },
+      "input": {
+        "path": "/orders/12345",
+        "templates": []
+      },
+      "name": "heuristic-ascii-digits"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/v/{id}"
+      },
+      "input": {
+        "path": "/v/1",
+        "templates": []
+      },
+      "name": "heuristic-ascii-digit-single"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/007",
+        "templates": []
+      },
+      "name": "heuristic-leading-zero"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/٣٤",
+        "templates": []
+      },
+      "name": "heuristic-unicode-arabic-digits"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/²",
+        "templates": []
+      },
+      "name": "heuristic-superscript-two"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/Ⅷ"
+      },
+      "input": {
+        "path": "/o/Ⅷ",
+        "templates": []
+      },
+      "name": "heuristic-roman-numeral"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/１２",
+        "templates": []
+      },
+      "name": "heuristic-fullwidth-digits"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/१२",
+        "templates": []
+      },
+      "name": "heuristic-devanagari-digits"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/①",
+        "templates": []
+      },
+      "name": "heuristic-circled-digit"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/½"
+      },
+      "input": {
+        "path": "/o/½",
+        "templates": []
+      },
+      "name": "heuristic-vulgar-fraction"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/-5"
+      },
+      "input": {
+        "path": "/o/-5",
+        "templates": []
+      },
+      "name": "heuristic-digits-with-sign"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/1.5"
+      },
+      "input": {
+        "path": "/o/1.5",
+        "templates": []
+      },
+      "name": "heuristic-digits-with-dot"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/12a"
+      },
+      "input": {
+        "path": "/o/12a",
+        "templates": []
+      },
+      "name": "heuristic-digits-with-letter"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/123e4567-e89b-12d3-a456-426614174000",
+        "templates": []
+      },
+      "name": "heuristic-uuid-lower"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/123E4567-E89B-12D3-A456-426614174000",
+        "templates": []
+      },
+      "name": "heuristic-uuid-upper"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/123e4567-E89B-12d3-A456-426614174000",
+        "templates": []
+      },
+      "name": "heuristic-uuid-mixed"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/123e4567-e89b-12d3-a456-42661417400"
+      },
+      "input": {
+        "path": "/o/123e4567-e89b-12d3-a456-42661417400",
+        "templates": []
+      },
+      "name": "heuristic-uuid-bad-group"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/123e4567e89b12d3a456426614174000",
+        "templates": []
+      },
+      "name": "heuristic-uuid-no-dashes-32"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/abcdef012345678"
+      },
+      "input": {
+        "path": "/o/abcdef012345678",
+        "templates": []
+      },
+      "name": "heuristic-hex-15"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/abcdef0123456789",
+        "templates": []
+      },
+      "name": "heuristic-hex-16"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/abcdef01234567890",
+        "templates": []
+      },
+      "name": "heuristic-hex-17"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/ABCDEF0123456789",
+        "templates": []
+      },
+      "name": "heuristic-hex-16-upper"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/AbCdEf0123456789",
+        "templates": []
+      },
+      "name": "heuristic-hex-16-mixed"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/abcdef012345678g"
+      },
+      "input": {
+        "path": "/o/abcdef012345678g",
+        "templates": []
+      },
+      "name": "heuristic-hex-16-with-g"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/123456789012345",
+        "templates": []
+      },
+      "name": "heuristic-hex-15-digits-only"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/abcdefabcdefabcd",
+        "templates": []
+      },
+      "name": "heuristic-hex-letters-only-16"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/deadbeef"
+      },
+      "input": {
+        "path": "/o/deadbeef",
+        "templates": []
+      },
+      "name": "heuristic-hex-word-feed"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/abcdefghijklmnop"
+      },
+      "input": {
+        "path": "/o/abcdefghijklmnop",
+        "templates": []
+      },
+      "name": "heuristic-hex-word-long-nonhex"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/%31%32"
+      },
+      "input": {
+        "path": "/o/%31%32",
+        "templates": []
+      },
+      "name": "heuristic-percent-encoded-digits"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/123e4567%2De89b-12d3-a456-426614174000"
+      },
+      "input": {
+        "path": "/o/123e4567%2De89b-12d3-a456-426614174000",
+        "templates": []
+      },
+      "name": "heuristic-percent-encoded-uuid"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/a%20b"
+      },
+      "input": {
+        "path": "/o/a%20b",
+        "templates": []
+      },
+      "name": "heuristic-percent-encoded-space"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": ""
+      },
+      "input": {
+        "path": "",
+        "templates": []
+      },
+      "name": "heuristic-empty-path"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/"
+      },
+      "input": {
+        "path": "/",
+        "templates": []
+      },
+      "name": "heuristic-root"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}/"
+      },
+      "input": {
+        "path": "/o/123/",
+        "templates": []
+      },
+      "name": "heuristic-trailing-slash"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o//{id}"
+      },
+      "input": {
+        "path": "/o//123",
+        "templates": []
+      },
+      "name": "heuristic-double-slash"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/a/{id}/b/{id}/c/{id}"
+      },
+      "input": {
+        "path": "/a/1/b/2/c/3",
+        "templates": []
+      },
+      "name": "heuristic-multi-ids"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/users/{id}/orders/abc"
+      },
+      "input": {
+        "path": "/users/5/orders/abc",
+        "templates": []
+      },
+      "name": "heuristic-mixed-literals"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "users/{id}"
+      },
+      "input": {
+        "path": "users/5",
+        "templates": []
+      },
+      "name": "heuristic-no-leading-slash"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/5?x=1"
+      },
+      "input": {
+        "path": "/o/5?x=1",
+        "templates": []
+      },
+      "name": "heuristic-query-like-in-path"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/../{id}"
+      },
+      "input": {
+        "path": "/o/../5",
+        "templates": []
+      },
+      "name": "heuristic-dot-segment"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/café/{id}"
+      },
+      "input": {
+        "path": "/café/42",
+        "templates": []
+      },
+      "name": "heuristic-non-ascii-literal"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/abcdef012345678١"
+      },
+      "input": {
+        "path": "/o/abcdef012345678١",
+        "templates": []
+      },
+      "name": "heuristic-hex-16-unicode-lookalike"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/abcdef012345678K"
+      },
+      "input": {
+        "path": "/o/abcdef012345678K",
+        "templates": []
+      },
+      "name": "heuristic-kelvin-sign-hex-16"
+    },
+    {
+      "expected": {
+        "sorted_templates": [],
+        "template": "/o/{id}"
+      },
+      "input": {
+        "path": "/o/9999999999999999999999999999999999999999",
+        "templates": []
+      },
+      "name": "heuristic-long-digit-run"
+    }
+  ],
+  "description": "Curated template ordering/matching and heuristic fallback. expected.sorted_templates is the load_curated_templates order.",
+  "source": "stubsmith.privacy.templating.load_curated_templates, template_path"
+}

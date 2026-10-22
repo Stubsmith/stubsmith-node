@@ -1,0 +1,3805 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||",
+        "req_fingerprint": "fc552c95a0bb0d3e",
+        "resp_fingerprint": "200fc552c95a0bb0d3e",
+        "resp_raw": "||",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "golden-empty-all"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a",
+          "b",
+          "b.c",
+          "b.c.[].d",
+          "b.c.[]"
+        ],
+        "query_names": [
+          "x",
+          "y"
+        ],
+        "raw": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "req_fingerprint": "1e4594fd8de5d608",
+        "resp_fingerprint": "2001e4594fd8de5d608",
+        "resp_raw": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1,\"b\":{\"c\":[1,{\"d\":2}]}}",
+        "content_type": "application/json; charset=utf-8",
+        "query_string": "x=1&y=2",
+        "status": 200
+      },
+      "name": "golden-nested"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a",
+          "b",
+          "b.c",
+          "b.c.[].d",
+          "b.c.[]"
+        ],
+        "query_names": [
+          "x",
+          "y"
+        ],
+        "raw": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json|a=1",
+        "req_fingerprint": "cc3f2ac54ed241d5",
+        "resp_fingerprint": "2001e4594fd8de5d608",
+        "resp_raw": "a,b,b.c,b.c.[],b.c.[].d|x,y|application/json",
+        "value_pairs": [
+          "a=1"
+        ]
+      },
+      "input": {
+        "body": "{\"a\":1,\"b\":{\"c\":[1,{\"d\":2}]}}",
+        "content_type": "application/json; charset=utf-8",
+        "query_string": "x=1&y=2",
+        "status": 200,
+        "value_paths": [
+          "a"
+        ]
+      },
+      "name": "golden-nested-value"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "empty-body-json-ct"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "  \n\t ",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "whitespace-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{not json",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "invalid-json"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "truncated-json"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "42",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-scalar-int"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "\"hi\"",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-scalar-string"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "null",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-scalar-null"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "true",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-scalar-true"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a",
+          "a.b",
+          "a.b.c",
+          "a.b.d",
+          "a.b.d.e",
+          "a.f",
+          "g"
+        ],
+        "query_names": [],
+        "raw": "a,a.b,a.b.c,a.b.d,a.b.d.e,a.f,g||application/json",
+        "req_fingerprint": "9c6d4405facac395",
+        "resp_fingerprint": "2009c6d4405facac395",
+        "resp_raw": "a,a.b,a.b.c,a.b.d,a.b.d.e,a.f,g||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":{\"b\":{\"c\":1,\"d\":{\"e\":2}},\"f\":3},\"g\":4}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "nested-objects"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "items",
+          "items.[].id",
+          "items.[].p",
+          "items.[].q"
+        ],
+        "query_names": [],
+        "raw": "items,items.[].id,items.[].p,items.[].q||application/json",
+        "req_fingerprint": "846b0e421315f105",
+        "resp_fingerprint": "200846b0e421315f105",
+        "resp_raw": "items,items.[].id,items.[].p,items.[].q||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"items\":[{\"id\":1,\"p\":2},{\"id\":3,\"q\":4}]}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "array-of-objects"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "tags",
+          "tags.[]"
+        ],
+        "query_names": [],
+        "raw": "tags,tags.[]||application/json",
+        "req_fingerprint": "24ae6ce104eae0a2",
+        "resp_fingerprint": "20024ae6ce104eae0a2",
+        "resp_raw": "tags,tags.[]||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"tags\":[\"x\",\"y\"]}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "array-of-scalars"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "m",
+          "m.[].deep",
+          "m.[].deep.deeper",
+          "m.[].[].z",
+          "m.[]"
+        ],
+        "query_names": [],
+        "raw": "m,m.[],m.[].[].z,m.[].deep,m.[].deep.deeper||application/json",
+        "req_fingerprint": "42ac457de7a4cc77",
+        "resp_fingerprint": "20042ac457de7a4cc77",
+        "resp_raw": "m,m.[],m.[].[].z,m.[].deep,m.[].deep.deeper||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"m\":[1,{\"deep\":{\"deeper\":1}},\"s\",[{\"z\":1}]]}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "mixed-array"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "m",
+          "m.[].k",
+          "m.[]"
+        ],
+        "query_names": [],
+        "raw": "m,m.[],m.[].k||application/json",
+        "req_fingerprint": "4c609af66cd7c311",
+        "resp_fingerprint": "2004c609af66cd7c311",
+        "resp_raw": "m,m.[],m.[].k||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"m\":[1,{\"k\":1}]}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "mixed-array-scalar-first"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "m",
+          "m.[].k",
+          "m.[]"
+        ],
+        "query_names": [],
+        "raw": "m,m.[],m.[].k||application/json",
+        "req_fingerprint": "4c609af66cd7c311",
+        "resp_fingerprint": "2004c609af66cd7c311",
+        "resp_raw": "m,m.[],m.[].k||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"m\":[{\"k\":1},1]}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "mixed-array-object-first"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/json",
+        "req_fingerprint": "12bf94784d6ac153",
+        "resp_fingerprint": "20012bf94784d6ac153",
+        "resp_raw": "a||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":[]}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "empty-array"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "[]",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-empty-array"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "[].id",
+          "[].name"
+        ],
+        "query_names": [],
+        "raw": "[].id,[].name||application/json",
+        "req_fingerprint": "1bfb094da9570539",
+        "resp_fingerprint": "2001bfb094da9570539",
+        "resp_raw": "[].id,[].name||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "[{\"id\":1},{\"name\":\"x\"}]",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-array-of-objects"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "[]"
+        ],
+        "query_names": [],
+        "raw": "[]||application/json",
+        "req_fingerprint": "b0d60b5a0acbf928",
+        "resp_fingerprint": "200b0d60b5a0acbf928",
+        "resp_raw": "[]||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "[1,2,3]",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-array-of-scalars"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "[].[]",
+          "[].[].a"
+        ],
+        "query_names": [],
+        "raw": "[].[],[].[].a||application/json",
+        "req_fingerprint": "c87a1074b589e7ed",
+        "resp_fingerprint": "200c87a1074b589e7ed",
+        "resp_raw": "[].[],[].[].a||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "[[1,2],[{\"a\":1}]]",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "root-nested-arrays"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a",
+          "b",
+          "b.c"
+        ],
+        "query_names": [],
+        "raw": "a,b,b.c||application/json",
+        "req_fingerprint": "bea0adeace10be3f",
+        "resp_fingerprint": "200bea0adeace10be3f",
+        "resp_raw": "a,b,b.c||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":{},\"b\":{\"c\":{}}}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "nested-empty-objects"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/json",
+        "req_fingerprint": "12bf94784d6ac153",
+        "resp_fingerprint": "20012bf94784d6ac153",
+        "resp_raw": "a||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":[{},{}]}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "array-of-empty-objects"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a",
+          "a.c",
+          "b"
+        ],
+        "query_names": [],
+        "raw": "a,a.c,b||application/json",
+        "req_fingerprint": "8ecdf5bad2c7dffd",
+        "resp_fingerprint": "2008ecdf5bad2c7dffd",
+        "resp_raw": "a,a.c,b||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1,\"b\":2,\"a\":{\"c\":1}}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "dup-keys-last-wins"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/json",
+        "req_fingerprint": "12bf94784d6ac153",
+        "resp_fingerprint": "20012bf94784d6ac153",
+        "resp_raw": "a||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":{\"c\":1},\"a\":5}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "dup-keys-obj-then-scalar"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "b",
+          "2",
+          "1",
+          "a",
+          "a.10",
+          "a.9"
+        ],
+        "query_names": [],
+        "raw": "1,2,a,a.10,a.9,b||application/json",
+        "req_fingerprint": "a8c113ba522a1c7c",
+        "resp_fingerprint": "200a8c113ba522a1c7c",
+        "resp_raw": "1,2,a,a.10,a.9,b||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"b\":1,\"2\":1,\"1\":1,\"a\":{\"10\":1,\"9\":2}}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "numeric-like-key-order"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a.b",
+          "a",
+          "a.b"
+        ],
+        "query_names": [],
+        "raw": "a,a.b,a.b||application/json",
+        "req_fingerprint": "23694405b08ae370",
+        "resp_fingerprint": "20023694405b08ae370",
+        "resp_raw": "a,a.b,a.b||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a.b\":1,\"a\":{\"b\":2}}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "key-with-dot"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a",
+          "a.[]"
+        ],
+        "query_names": [],
+        "raw": "a,a.[]||application/json",
+        "req_fingerprint": "7c1d8af072c00bac",
+        "resp_fingerprint": "2007c1d8af072c00bac",
+        "resp_raw": "a,a.[]||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":{\"[]\":1}}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "key-literal-brackets"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "",
+          "a",
+          "a."
+        ],
+        "query_names": [],
+        "raw": ",a,a.||application/json",
+        "req_fingerprint": "333af71a74242a7d",
+        "resp_fingerprint": "200333af71a74242a7d",
+        "resp_raw": ",a,a.||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"\":1,\"a\":{\"\":2}}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "empty-key"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "b"
+        ],
+        "query_names": [],
+        "raw": "a,b||application/x-www-form-urlencoded",
+        "req_fingerprint": "cf2383fe8a9e141e",
+        "resp_fingerprint": "200cf2383fe8a9e141e",
+        "resp_raw": "a,b||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1&b=2",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-basic"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=&b=&c",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-blank-values"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "b"
+        ],
+        "query_names": [],
+        "raw": "a,b||application/x-www-form-urlencoded",
+        "req_fingerprint": "cf2383fe8a9e141e",
+        "resp_fingerprint": "200cf2383fe8a9e141e",
+        "resp_raw": "a,b||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1&a=2&b=3&a=4",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-repeated-keys"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a b",
+          "e f",
+          "g"
+        ],
+        "query_names": [],
+        "raw": "a b,e f,g||application/x-www-form-urlencoded",
+        "req_fingerprint": "c5357a7e34b31c1a",
+        "resp_fingerprint": "200c5357a7e34b31c1a",
+        "resp_raw": "a b,e f,g||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a+b=c+d&e%20f=%41%42&g=%2B",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-plus-percent"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "flag&other=1",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-bare-key"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "b"
+        ],
+        "query_names": [],
+        "raw": "a,b||application/x-www-form-urlencoded",
+        "req_fingerprint": "cf2383fe8a9e141e",
+        "resp_fingerprint": "200cf2383fe8a9e141e",
+        "resp_raw": "a,b||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1&&b=2&",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-empty-segments"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "c"
+        ],
+        "query_names": [],
+        "raw": "a,c||application/x-www-form-urlencoded",
+        "req_fingerprint": "d6ee3eeb17fe8998",
+        "resp_fingerprint": "200d6ee3eeb17fe8998",
+        "resp_raw": "a,c||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1;b=2&c=3",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-semicolon-not-separator"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "&&&",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-only-ampersands"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a[]",
+          "b[x]"
+        ],
+        "query_names": [],
+        "raw": "a[],b[x]||application/x-www-form-urlencoded",
+        "req_fingerprint": "606f37018257a37b",
+        "resp_fingerprint": "200606f37018257a37b",
+        "resp_raw": "a[],b[x]||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a[]=1&a[]=2&b[x]=3",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-brackets-keys"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "café",
+          "😀",
+          "z"
+        ],
+        "query_names": [],
+        "raw": "café,z,😀||application/x-www-form-urlencoded",
+        "req_fingerprint": "d50cadf9b6b69e1f",
+        "resp_fingerprint": "200d50cadf9b6b69e1f",
+        "resp_raw": "café,z,😀||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "caf%C3%A9=1&%F0%9F%98%80=2&z=3",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-unicode-keys"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a%zz",
+          "b"
+        ],
+        "query_names": [],
+        "raw": "a%zz,b||application/x-www-form-urlencoded",
+        "req_fingerprint": "3bd8e973e8415c72",
+        "resp_fingerprint": "2003bd8e973e8415c72",
+        "resp_raw": "a%zz,b||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a%zz=1&b=%E9",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-invalid-percent"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "d"
+        ],
+        "query_names": [],
+        "raw": "a,d||application/x-www-form-urlencoded",
+        "req_fingerprint": "7344a19e91de7458",
+        "resp_fingerprint": "2007344a19e91de7458",
+        "resp_raw": "a,d||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=b=c&d==",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-equals-in-value"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-looks-like-json"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "   ",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-whitespace-only"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "Dear SECRET, your PIN is 1234",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-free-text"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1&Dear SECRET",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "form-free-text-after-pair"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "text/plain",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||text/plain",
+        "req_fingerprint": "5125d79ac29bf3db",
+        "resp_fingerprint": "2005125d79ac29bf3db",
+        "resp_raw": "a||text/plain",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "text/plain",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "text-plain-json-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||",
+        "req_fingerprint": "c75d46ae3f4389d3",
+        "resp_fingerprint": "200c75d46ae3f4389d3",
+        "resp_raw": "a||",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "no-ct-json-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/json",
+        "req_fingerprint": "12bf94784d6ac153",
+        "resp_fingerprint": "20012bf94784d6ac153",
+        "resp_raw": "a||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "application/json; charset=UTF-8",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "ct-charset-suffix"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/json",
+        "req_fingerprint": "12bf94784d6ac153",
+        "resp_fingerprint": "20012bf94784d6ac153",
+        "resp_raw": "a||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "APPLICATION/JSON",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "ct-uppercase"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/json",
+        "req_fingerprint": "12bf94784d6ac153",
+        "resp_fingerprint": "20012bf94784d6ac153",
+        "resp_raw": "a||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "  Application/Json  ;charset=utf-8",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "ct-spaces-around"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "b"
+        ],
+        "query_names": [],
+        "raw": "a,b||application/x-www-form-urlencoded",
+        "req_fingerprint": "cf2383fe8a9e141e",
+        "resp_fingerprint": "200cf2383fe8a9e141e",
+        "resp_raw": "a,b||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1&b=2",
+        "content_type": "Application/X-WWW-Form-Urlencoded; Charset=UTF-8",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "ct-form-uppercase-charset"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "multipart/form-data",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||multipart/form-data",
+        "req_fingerprint": "fdfadfcfdcc5a23f",
+        "resp_fingerprint": "200fdfadfcfdcc5a23f",
+        "resp_raw": "a||multipart/form-data",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "multipart/form-data; boundary=----x",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "ct-multipart-boundary-json-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "image/png",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||image/png",
+        "req_fingerprint": "62d7f898ec5b9d8a",
+        "resp_fingerprint": "20062d7f898ec5b9d8a",
+        "resp_raw": "a||image/png",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": "image/png",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "ct-image-png-with-json-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||",
+        "req_fingerprint": "c75d46ae3f4389d3",
+        "resp_fingerprint": "200c75d46ae3f4389d3",
+        "resp_raw": "a||",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"a\":1}",
+        "content_type": ";charset=utf-8",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "ct-semicolon-only"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a",
+          "b"
+        ],
+        "raw": "|a,b|",
+        "req_fingerprint": "1801ef7faee21776",
+        "resp_fingerprint": "2001801ef7faee21776",
+        "resp_raw": "|a,b|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a=1&b=2",
+        "status": 200
+      },
+      "name": "qs-basic"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a",
+          "b"
+        ],
+        "raw": "|a,b|",
+        "req_fingerprint": "1801ef7faee21776",
+        "resp_fingerprint": "2001801ef7faee21776",
+        "resp_raw": "|a,b|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a=1&a=2&b=3",
+        "status": 200
+      },
+      "name": "qs-repeated"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a",
+          "b"
+        ],
+        "raw": "|a,b|",
+        "req_fingerprint": "1801ef7faee21776",
+        "resp_fingerprint": "2001801ef7faee21776",
+        "resp_raw": "|a,b|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a=&b",
+        "status": 200
+      },
+      "name": "qs-blank"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a",
+          "b"
+        ],
+        "raw": "|a,b|",
+        "req_fingerprint": "1801ef7faee21776",
+        "resp_fingerprint": "2001801ef7faee21776",
+        "resp_raw": "|a,b|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a=1&&b=2",
+        "status": 200
+      },
+      "name": "qs-empty-segments"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a"
+        ],
+        "raw": "|a|",
+        "req_fingerprint": "8acc6d3a3c48b792",
+        "resp_fingerprint": "2008acc6d3a3c48b792",
+        "resp_raw": "|a|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a=1;b=2",
+        "status": 200
+      },
+      "name": "qs-semicolon"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a b",
+          "c d"
+        ],
+        "raw": "|a b,c d|",
+        "req_fingerprint": "01cb0173e7c24d65",
+        "resp_fingerprint": "20001cb0173e7c24d65",
+        "resp_raw": "|a b,c d|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a+b=1&c%20d=2",
+        "status": 200
+      },
+      "name": "qs-plus-percent"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "x",
+          "y"
+        ],
+        "raw": "|x,y|",
+        "req_fingerprint": "65ecd47cef1de5c9",
+        "resp_fingerprint": "20065ecd47cef1de5c9",
+        "resp_raw": "|x,y|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "x&y&x",
+        "status": 200
+      },
+      "name": "qs-bare-keys"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "café",
+          "😀"
+        ],
+        "raw": "|café,😀|",
+        "req_fingerprint": "420fbfe4966f70c7",
+        "resp_fingerprint": "200420fbfe4966f70c7",
+        "resp_raw": "|café,😀|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "caf%C3%A9=1&%F0%9F%98%80=2",
+        "status": 200
+      },
+      "name": "qs-unicode"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a[]"
+        ],
+        "raw": "|a[]|",
+        "req_fingerprint": "30ee2d1508598fdd",
+        "resp_fingerprint": "20030ee2d1508598fdd",
+        "resp_raw": "|a[]|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a[]=1&a[]=2",
+        "status": 200
+      },
+      "name": "qs-brackets"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "?a"
+        ],
+        "raw": "|?a|",
+        "req_fingerprint": "7785dc286856694c",
+        "resp_fingerprint": "2007785dc286856694c",
+        "resp_raw": "|?a|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "?a=1",
+        "status": 200
+      },
+      "name": "qs-leading-question-mark"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "a"
+        ],
+        "raw": "|a|",
+        "req_fingerprint": "8acc6d3a3c48b792",
+        "resp_fingerprint": "2008acc6d3a3c48b792",
+        "resp_raw": "|a|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "a=1&",
+        "status": 200
+      },
+      "name": "qs-trailing-amp"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "z",
+          "a",
+          "m"
+        ],
+        "raw": "|a,m,z|",
+        "req_fingerprint": "2294929bcbecad0a",
+        "resp_fingerprint": "2002294929bcbecad0a",
+        "resp_raw": "|a,m,z|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "z=1&a=2&m=3",
+        "status": 200
+      },
+      "name": "qs-order-differs-from-sorted"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "k"
+        ],
+        "query_names": [
+          "z",
+          "a"
+        ],
+        "raw": "k|a,z|application/json",
+        "req_fingerprint": "4cc4477b6ec4110f",
+        "resp_fingerprint": "2004cc4477b6ec4110f",
+        "resp_raw": "k|a,z|application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"k\":1}",
+        "content_type": "application/json",
+        "query_string": "z=1&a=2",
+        "status": 200
+      },
+      "name": "qs-with-json-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "z",
+          "😀",
+          "�",
+          ""
+        ],
+        "query_names": [],
+        "raw": "z,,�,😀||application/json",
+        "req_fingerprint": "eb6dffd1d61f8471",
+        "resp_fingerprint": "200eb6dffd1d61f8471",
+        "resp_raw": "z,,�,😀||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"z\":1,\"😀\":2,\"�\":3,\"\":4}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "codepoint-order-astral-vs-bmp"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [
+          "😀",
+          "�",
+          "z"
+        ],
+        "raw": "|z,�,😀|",
+        "req_fingerprint": "fb4a4ddeb0d8faf2",
+        "resp_fingerprint": "200fb4a4ddeb0d8faf2",
+        "resp_raw": "|z,�,😀|",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "😀=1&�=2&z=3&%EF%BF%BD=4",
+        "status": 200
+      },
+      "name": "codepoint-order-astral-query"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "😀",
+          "�",
+          "z"
+        ],
+        "query_names": [],
+        "raw": "z,�,😀||application/x-www-form-urlencoded",
+        "req_fingerprint": "e059731999a2b92c",
+        "resp_fingerprint": "200e059731999a2b92c",
+        "resp_raw": "z,�,😀||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "%F0%9F%98%80=1&%EF%BF%BD=2&z=3",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "codepoint-order-form"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "～",
+          "𐀀",
+          "😀"
+        ],
+        "query_names": [],
+        "raw": "～,𐀀,😀||application/json",
+        "req_fingerprint": "37e80731b2e1c810",
+        "resp_fingerprint": "20037e80731b2e1c810",
+        "resp_raw": "～,𐀀,😀||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"～\":1,\"𐀀\":2,\"😀\":3}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200
+      },
+      "name": "codepoint-order-astral-vs-bmp-high"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "error"
+        ],
+        "query_names": [],
+        "raw": "error||application/json",
+        "req_fingerprint": "23bb2efe75a2fa49",
+        "resp_fingerprint": "40423bb2efe75a2fa49",
+        "resp_raw": "error||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"error\":\"x\"}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 404
+      },
+      "name": "status-404"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||",
+        "req_fingerprint": "fc552c95a0bb0d3e",
+        "resp_fingerprint": "500fc552c95a0bb0d3e",
+        "resp_raw": "||",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "",
+        "content_type": "",
+        "query_string": "",
+        "status": 500
+      },
+      "name": "status-500-empty"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|t=true",
+        "req_fingerprint": "3f90b6ebc29e373a",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "t=true"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "t"
+        ]
+      },
+      "name": "value-t"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|f=false",
+        "req_fingerprint": "863e83f49be2a5a0",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "f=false"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "f"
+        ]
+      },
+      "name": "value-f"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|i=7",
+        "req_fingerprint": "ccfc2c10d7f7ea50",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "i=7"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "i"
+        ]
+      },
+      "name": "value-i"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|n=-7",
+        "req_fingerprint": "314945d712effd32",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "n=-7"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "n"
+        ]
+      },
+      "name": "value-n"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|big=9223372036854775808",
+        "req_fingerprint": "214d89e44e3908da",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "big=9223372036854775808"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "big"
+        ]
+      },
+      "name": "value-big"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|huge=123456789012345678901234567890",
+        "req_fingerprint": "22cbde5c36fed241",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "huge=123456789012345678901234567890"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "huge"
+        ]
+      },
+      "name": "value-huge"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|f1=1.0",
+        "req_fingerprint": "167ff226c4c67676",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "f1=1.0"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "f1"
+        ]
+      },
+      "name": "value-f1"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|f15=1.5",
+        "req_fingerprint": "dabf2d25e26de63e",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "f15=1.5"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "f15"
+        ]
+      },
+      "name": "value-f15"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|e16=1e+16",
+        "req_fingerprint": "05070d63e6417d67",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "e16=1e+16"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "e16"
+        ]
+      },
+      "name": "value-e16"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|em7=1e-07",
+        "req_fingerprint": "723c00b9c5e130d7",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "em7=1e-07"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "em7"
+        ]
+      },
+      "name": "value-em7"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|sum=0.30000000000000004",
+        "req_fingerprint": "debca7d3393fd719",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "sum=0.30000000000000004"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "sum"
+        ]
+      },
+      "name": "value-sum"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|nz=-0.0",
+        "req_fingerprint": "1f43abb74631dd44",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "nz=-0.0"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "nz"
+        ]
+      },
+      "name": "value-nz"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|e2=100.0",
+        "req_fingerprint": "3f4ea8dc38597ff2",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "e2=100.0"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "e2"
+        ]
+      },
+      "name": "value-e2"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|s=str",
+        "req_fingerprint": "06644d8254fb5e0e",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "s=str"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "s"
+        ]
+      },
+      "name": "value-s"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|nl=null",
+        "req_fingerprint": "1057ace20e0c817a",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "nl=null"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "nl"
+        ]
+      },
+      "name": "value-nl"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "o"
+        ]
+      },
+      "name": "value-o"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a"
+        ]
+      },
+      "name": "value-a"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|nested.v=5",
+        "req_fingerprint": "f3600685f6967bbc",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "nested.v=5"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "nested.v"
+        ]
+      },
+      "name": "value-nested_v"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "nested.w"
+        ]
+      },
+      "name": "value-nested_w"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|nested.w.x=y",
+        "req_fingerprint": "b616cb3ce9cd49e1",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "nested.w.x=y"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "nested.w.x"
+        ]
+      },
+      "name": "value-nested_w_x"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "missing"
+        ]
+      },
+      "name": "value-missing"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "nested.missing"
+        ]
+      },
+      "name": "value-nested_missing"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "arr.[].v"
+        ]
+      },
+      "name": "value-arr_arr_v"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "arr.0.v"
+        ]
+      },
+      "name": "value-arr_0_v"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a.0"
+        ]
+      },
+      "name": "value-a_0"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|emptys=",
+        "req_fingerprint": "e44bc1daa6997202",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "emptys="
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "emptys"
+        ]
+      },
+      "name": "value-emptys"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|uni=café",
+        "req_fingerprint": "cf6fb339c7f4b178",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "uni=café"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "uni"
+        ]
+      },
+      "name": "value-uni"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|nan=NaN",
+        "req_fingerprint": "782b4d1ec151a743",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "nan=NaN"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "nan"
+        ]
+      },
+      "name": "value-nan"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|inf=Infinity",
+        "req_fingerprint": "91497d0b8e0b2465",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "inf=Infinity"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "inf"
+        ]
+      },
+      "name": "value-inf"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|ninf=-Infinity",
+        "req_fingerprint": "8cdbabc19a783e1c",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "ninf=-Infinity"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "ninf"
+        ]
+      },
+      "name": "value-ninf"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "s.x"
+        ]
+      },
+      "name": "value-s_x"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|i=7,s=str,t=true",
+        "req_fingerprint": "afdf0cca6a16800c",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "s=str",
+          "i=7",
+          "t=true"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "s",
+          "i",
+          "t",
+          "missing"
+        ]
+      },
+      "name": "value-multi-sorted"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "missing",
+          "o",
+          "a"
+        ]
+      },
+      "name": "value-multi-none-hit"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "req_fingerprint": "c45b8354005df376",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": []
+      },
+      "name": "value-empty-list"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "t",
+          "f",
+          "i",
+          "n",
+          "big",
+          "huge",
+          "f1",
+          "f15",
+          "e16",
+          "em7",
+          "sum",
+          "nz",
+          "e2",
+          "s",
+          "nl",
+          "o",
+          "o.x",
+          "a",
+          "a.[]",
+          "nested",
+          "nested.v",
+          "nested.w",
+          "nested.w.x",
+          "arr",
+          "arr.[].v",
+          "emptys",
+          "uni",
+          "nan",
+          "inf",
+          "ninf"
+        ],
+        "query_names": [],
+        "raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json|i=7,i=7",
+        "req_fingerprint": "6c628c9f9e7b97df",
+        "resp_fingerprint": "200c45b8354005df376",
+        "resp_raw": "a,a.[],arr,arr.[].v,big,e16,e2,em7,emptys,f,f1,f15,huge,i,inf,n,nan,nested,nested.v,nested.w,nested.w.x,ninf,nl,nz,o,o.x,s,sum,t,uni||application/json",
+        "value_pairs": [
+          "i=7",
+          "i=7"
+        ]
+      },
+      "input": {
+        "body": "{\"t\":true,\"f\":false,\"i\":7,\"n\":-7,\"big\":9223372036854775808,\"huge\":123456789012345678901234567890,\"f1\":1.0,\"f15\":1.5,\"e16\":1e16,\"em7\":1e-7,\"sum\":0.30000000000000004,\"nz\":-0.0,\"e2\":1E2,\"s\":\"str\",\"nl\":null,\"o\":{\"x\":1},\"a\":[1,2],\"nested\":{\"v\":5,\"w\":{\"x\":\"y\"}},\"arr\":[{\"v\":1}],\"emptys\":\"\",\"uni\":\"caf\\u00e9\",\"nan\":NaN,\"inf\":Infinity,\"ninf\":-Infinity}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "i",
+          "i"
+        ]
+      },
+      "name": "value-duplicate-path"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "s"
+        ],
+        "query_names": [],
+        "raw": "s||application/json|s=a,b=c",
+        "req_fingerprint": "f98076a7087019ad",
+        "resp_fingerprint": "20027643883083a2bea",
+        "resp_raw": "s||application/json",
+        "value_pairs": [
+          "s=a,b=c"
+        ]
+      },
+      "input": {
+        "body": "{\"s\":\"a,b=c\"}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "s"
+        ]
+      },
+      "name": "value-string-with-comma-eq"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "[]"
+        ],
+        "query_names": [],
+        "raw": "[]||application/json",
+        "req_fingerprint": "b0d60b5a0acbf928",
+        "resp_fingerprint": "200b0d60b5a0acbf928",
+        "resp_raw": "[]||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "[1,2]",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a"
+        ]
+      },
+      "name": "value-root-array-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "5",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a"
+        ]
+      },
+      "name": "value-root-scalar-body"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/json",
+        "req_fingerprint": "57bb237c00152f8b",
+        "resp_fingerprint": "20057bb237c00152f8b",
+        "resp_raw": "||application/json",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "{bad",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a"
+        ]
+      },
+      "name": "value-invalid-json"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/json",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/json|a=2",
+        "req_fingerprint": "2b6f5ba17b78fcdd",
+        "resp_fingerprint": "20012bf94784d6ac153",
+        "resp_raw": "a||application/json",
+        "value_pairs": [
+          "a=2"
+        ]
+      },
+      "input": {
+        "body": "{\"a\":1,\"a\":2}",
+        "content_type": "application/json",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a"
+        ]
+      },
+      "name": "value-dup-key-last-wins"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "text/plain",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||text/plain|a=x",
+        "req_fingerprint": "a03b76de12032b09",
+        "resp_fingerprint": "2005125d79ac29bf3db",
+        "resp_raw": "a||text/plain",
+        "value_pairs": [
+          "a=x"
+        ]
+      },
+      "input": {
+        "body": "{\"a\":\"x\"}",
+        "content_type": "text/plain",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a"
+        ]
+      },
+      "name": "value-text-plain-json"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "b",
+          "c",
+          "n"
+        ],
+        "query_names": [],
+        "raw": "a,b,c,n||application/x-www-form-urlencoded|a=1,b=,c=x y,n=+",
+        "req_fingerprint": "44b8a303b7cefd1a",
+        "resp_fingerprint": "200bf9b549dcbded242",
+        "resp_raw": "a,b,c,n||application/x-www-form-urlencoded",
+        "value_pairs": [
+          "a=1",
+          "b=",
+          "c=x y",
+          "n=+"
+        ]
+      },
+      "input": {
+        "body": "a=1&b=&c=x+y&a=2&n=%2B",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a",
+          "b",
+          "c",
+          "n",
+          "missing"
+        ]
+      },
+      "name": "value-form"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a.b",
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a,a.b||application/x-www-form-urlencoded|a.b=1",
+        "req_fingerprint": "cc69d705db265b4d",
+        "resp_fingerprint": "200819350022a888e52",
+        "resp_raw": "a,a.b||application/x-www-form-urlencoded",
+        "value_pairs": [
+          "a.b=1"
+        ]
+      },
+      "input": {
+        "body": "a.b=1&a=2",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a.b"
+        ]
+      },
+      "name": "value-form-dotted-key"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a"
+        ],
+        "query_names": [],
+        "raw": "a||application/x-www-form-urlencoded",
+        "req_fingerprint": "7a7f23d1ad0bbff1",
+        "resp_fingerprint": "2007a7f23d1ad0bbff1",
+        "resp_raw": "a||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a.[]"
+        ]
+      },
+      "name": "value-form-keypath-style"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [
+          "a",
+          "b"
+        ],
+        "query_names": [
+          "q"
+        ],
+        "raw": "a,b|q|application/x-www-form-urlencoded|b=2",
+        "req_fingerprint": "aac9181474effc25",
+        "resp_fingerprint": "2008d37049a83afa354",
+        "resp_raw": "a,b|q|application/x-www-form-urlencoded",
+        "value_pairs": [
+          "b=2"
+        ]
+      },
+      "input": {
+        "body": "a=1&b=2",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "q=1",
+        "status": 200,
+        "value_paths": [
+          "b"
+        ]
+      },
+      "name": "value-form-with-query"
+    },
+    {
+      "expected": {
+        "content_type_normalised": "application/x-www-form-urlencoded",
+        "key_paths": [],
+        "query_names": [],
+        "raw": "||application/x-www-form-urlencoded",
+        "req_fingerprint": "764d05446e5c336d",
+        "resp_fingerprint": "200764d05446e5c336d",
+        "resp_raw": "||application/x-www-form-urlencoded",
+        "value_pairs": []
+      },
+      "input": {
+        "body": "a=1&Dear SECRET",
+        "content_type": "application/x-www-form-urlencoded",
+        "query_string": "",
+        "status": 200,
+        "value_paths": [
+          "a",
+          "Dear SECRET"
+        ]
+      },
+      "name": "value-form-free-text"
+    }
+  ],
+  "description": "Key paths, query names, content-type normalisation, hash input string (raw) and request/response fingerprints. input.status applies to resp_fingerprint only; resp fingerprint uses the same body/query/content_type and never value pairs.",
+  "source": "stubsmith.privacy.fingerprint.extract_keypaths, unique_query_names, _normalise_ct, _extract_value_pairs, fingerprint, resp_fingerprint"
+}

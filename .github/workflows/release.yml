@@ -1,0 +1,154 @@
+name: Release
+
+# Publishes to npm using Trusted Publishing (OIDC), so no npm token is stored
+# in this repository. The trust relationship is configured on npmjs.com in the
+# package settings and must name this repository, this workflow file, and the
+# environment below. Trusted publishing can only be configured for a package
+# that already exists, so the very first publish is done by the maintainer.
+#
+# Trigger manually, or by publishing a GitHub release.
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Check the version is single-sourced
+        # src/_version.ts is the single source of truth for the version the SDK
+        # reports at runtime; package.json must be bumped together with it.
+        env:
+          RELEASE_TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || '' }}
+        run: |
+          pkg=$(node -p "require('./package.json').version")
+          src=$(sed -n 's/^export const VERSION = "\(.*\)";$/\1/p' src/_version.ts)
+          echo "package.json: ${pkg}"
+          echo "src/_version.ts: ${src}"
+          if [ -z "${src}" ] || [ "${pkg}" != "${src}" ]; then
+            echo "::error::package.json version (${pkg}) does not match src/_version.ts VERSION (${src}). Bump both together."
+            exit 1
+          fi
+          if [ -n "${RELEASE_TAG}" ] && [ "${RELEASE_TAG#v}" != "${pkg}" ]; then
+            echo "::error::release tag (${RELEASE_TAG}) does not match package.json version (${pkg})."
+            exit 1
+          fi
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+  pack:
+    name: Pack tarball
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Verify build outputs
+        run: |
+          if [ "$(head -c 2 dist/cli.js)" != "#!" ]; then
+            echo "::error::dist/cli.js is missing its shebang."
+            exit 1
+          fi
+          if [ ! -f dist/index.d.ts ]; then
+            echo "::error::dist/index.d.ts is missing."
+            exit 1
+          fi
+
+      - name: Pack
+        id: pack
+        run: |
+          mkdir -p out
+          npm pack --pack-destination out
+          tarball=$(ls out/*.tgz)
+          echo "tarball=${tarball}" >> "$GITHUB_OUTPUT"
+          echo "Contents of ${tarball}:"
+          tar tzf "${tarball}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: out/*.tgz
+          if-no-files-found: error
+
+  publish:
+    name: Publish to npm
+    needs: pack
+    # Only Stubsmith/stubsmith-node publishes; a run in any other repository,
+    # such as a fork, must not attempt to publish or create the environment.
+    if: github.repository == 'Stubsmith/stubsmith-node'
+    runs-on: ubuntu-latest
+    # Named on the npm Trusted Publisher configuration. Add required reviewers
+    # to this environment in repository settings to gate publishing behind
+    # approval.
+    environment: npm
+    permissions:
+      # Required for Trusted Publishing and provenance: lets the job mint a
+      # short-lived OIDC token. Nothing else in this workflow needs it, which
+      # is why publishing is a separate job.
+      id-token: write
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Upgrade npm
+        # Trusted publishing needs npm 11.5.1 or newer; Node 22 ships older.
+        run: npm install -g npm@^11.5.1
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: package
+          path: out/
+
+      - name: Publish
+        # No NODE_AUTH_TOKEN: npm authenticates with the OIDC token.
+        #
+        # A version already on npm is skipped instead of failing the job. npm
+        # versions are immutable, so a second firing for the same version
+        # (a release published after a dispatch, or a re-run) would otherwise
+        # fail with a red X on a release that is in fact fine.
+        run: |
+          tarball=$(ls out/*.tgz)
+          version=$(tar xzOf "${tarball}" package/package.json | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).version")
+          if [ "$(npm view "stubsmith@${version}" version 2>/dev/null || true)" = "${version}" ]; then
+            echo "stubsmith@${version} is already on npm, skipping."
+            exit 0
+          fi
+          # Prereleases (version contains a hyphen) go to the `next` dist-tag.
+          tag_args=()
+          case "${version}" in
+            *-*) tag_args=(--tag next) ;;
+          esac
+          # The ./ prefix matters: a bare out/x.tgz is parsed as a GitHub
+          # shorthand (owner/repo) instead of a file path.
+          npm publish "./${tarball}" --provenance --access public "${tag_args[@]+"${tag_args[@]}"}"

@@ -1,0 +1,2291 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "keys": [],
+        "parse_qs": [],
+        "parse_qs_drop_blank": [],
+        "urlencode_doseq": "",
+        "urlencode_doseq_masked": ""
+      },
+      "input": {
+        "query": ""
+      },
+      "name": "empty"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a",
+          "b"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ],
+          [
+            "b",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ],
+          [
+            "b",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1&b=2",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1&b=2"
+      },
+      "name": "simple"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "b c"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "b c"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=b+c",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=b+c"
+      },
+      "name": "plus"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "+"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "+"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%2B",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%2B"
+      },
+      "name": "percent-2B"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              " "
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              " "
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=+",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%20"
+      },
+      "name": "percent-20"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "b c+d e"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "b c+d e"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=b+c%2Bd+e",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=b+c%2Bd%20e"
+      },
+      "name": "plus-and-2B-and-20"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "!*'()~"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "!*'()~"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%21%2A%27%28%29~",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=!*'()~"
+      },
+      "name": "special-chars-literal"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "!*'()~"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "!*'()~"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%21%2A%27%28%29~",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%21%2A%27%28%29%7E"
+      },
+      "name": "special-chars-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "/"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "/"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%2F",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=/"
+      },
+      "name": "slash-literal"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "/"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "/"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%2F",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%2F"
+      },
+      "name": "slash-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "b=c"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "b=c"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=b%3Dc",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=b=c"
+      },
+      "name": "equals-in-value"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "=b"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "=b"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%3Db",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a==b"
+      },
+      "name": "equals-multiple"
+    },
+    {
+      "expected": {
+        "keys": [
+          ""
+        ],
+        "parse_qs": [
+          [
+            "",
+            [
+              ""
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [],
+        "urlencode_doseq": "=",
+        "urlencode_doseq_masked": "=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "="
+      },
+      "name": "equals-only"
+    },
+    {
+      "expected": {
+        "keys": [
+          ""
+        ],
+        "parse_qs": [
+          [
+            "",
+            [
+              "v"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "",
+            [
+              "v"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "=v",
+        "urlencode_doseq_masked": "=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "=v"
+      },
+      "name": "equals-key-empty"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a",
+          "b"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ],
+          [
+            "b",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ],
+          [
+            "b",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1&b=2",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1&&b=2"
+      },
+      "name": "double-ampersand"
+    },
+    {
+      "expected": {
+        "keys": [],
+        "parse_qs": [],
+        "parse_qs_drop_blank": [],
+        "urlencode_doseq": "",
+        "urlencode_doseq_masked": ""
+      },
+      "input": {
+        "query": "&&"
+      },
+      "name": "only-ampersands"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1&"
+      },
+      "name": "trailing-ampersand"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "&a=1"
+      },
+      "name": "leading-ampersand"
+    },
+    {
+      "expected": {
+        "keys": [
+          "flag"
+        ],
+        "parse_qs": [
+          [
+            "flag",
+            [
+              ""
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [],
+        "urlencode_doseq": "flag=",
+        "urlencode_doseq_masked": "flag=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "flag"
+      },
+      "name": "bare-key"
+    },
+    {
+      "expected": {
+        "keys": [
+          "x",
+          "y"
+        ],
+        "parse_qs": [
+          [
+            "x",
+            [
+              "",
+              ""
+            ]
+          ],
+          [
+            "y",
+            [
+              ""
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [],
+        "urlencode_doseq": "x=&x=&y=",
+        "urlencode_doseq_masked": "x=%3Cmasked%3E&x=%3Cmasked%3E&y=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "x&y&x"
+      },
+      "name": "bare-keys-multiple"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              ""
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [],
+        "urlencode_doseq": "a=",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a="
+      },
+      "name": "blank-value"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a",
+          "b",
+          "c"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              ""
+            ]
+          ],
+          [
+            "b",
+            [
+              ""
+            ]
+          ],
+          [
+            "c",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "c",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=&b=&c=1",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&b=%3Cmasked%3E&c=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=&b&c=1"
+      },
+      "name": "blank-and-bare"
+    },
+    {
+      "expected": {
+        "keys": [
+          "café"
+        ],
+        "parse_qs": [
+          [
+            "café",
+            [
+              "日本"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "café",
+            [
+              "日本"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "caf%C3%A9=%E6%97%A5%E6%9C%AC",
+        "urlencode_doseq_masked": "caf%C3%A9=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "café=日本"
+      },
+      "name": "unicode-raw"
+    },
+    {
+      "expected": {
+        "keys": [
+          "café"
+        ],
+        "parse_qs": [
+          [
+            "café",
+            [
+              "日本"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "café",
+            [
+              "日本"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "caf%C3%A9=%E6%97%A5%E6%9C%AC",
+        "urlencode_doseq_masked": "caf%C3%A9=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "caf%C3%A9=%E6%97%A5%E6%9C%AC"
+      },
+      "name": "unicode-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "k"
+        ],
+        "parse_qs": [
+          [
+            "k",
+            [
+              "😀"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "k",
+            [
+              "😀"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "k=%F0%9F%98%80",
+        "urlencode_doseq_masked": "k=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "k=😀"
+      },
+      "name": "astral-raw"
+    },
+    {
+      "expected": {
+        "keys": [
+          "k"
+        ],
+        "parse_qs": [
+          [
+            "k",
+            [
+              "😀"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "k",
+            [
+              "😀"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "k=%F0%9F%98%80",
+        "urlencode_doseq_masked": "k=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "k=%F0%9F%98%80"
+      },
+      "name": "astral-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a[]",
+          "b[x]"
+        ],
+        "parse_qs": [
+          [
+            "a[]",
+            [
+              "1",
+              "2"
+            ]
+          ],
+          [
+            "b[x]",
+            [
+              "3"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a[]",
+            [
+              "1",
+              "2"
+            ]
+          ],
+          [
+            "b[x]",
+            [
+              "3"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a%5B%5D=1&a%5B%5D=2&b%5Bx%5D=3",
+        "urlencode_doseq_masked": "a%5B%5D=%3Cmasked%3E&a%5B%5D=%3Cmasked%3E&b%5Bx%5D=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a[]=1&a[]=2&b[x]=3"
+      },
+      "name": "keys-brackets"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a[]"
+        ],
+        "parse_qs": [
+          [
+            "a[]",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a[]",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a%5B%5D=1",
+        "urlencode_doseq_masked": "a%5B%5D=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a%5B%5D=1"
+      },
+      "name": "keys-brackets-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a",
+          "b"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1",
+              "2",
+              "3",
+              "5"
+            ]
+          ],
+          [
+            "b",
+            [
+              "4"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1",
+              "2",
+              "3",
+              "5"
+            ]
+          ],
+          [
+            "b",
+            [
+              "4"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1&a=2&a=3&a=5&b=4",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&a=%3Cmasked%3E&a=%3Cmasked%3E&a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1&a=2&a=3&b=4&a=5"
+      },
+      "name": "repeated-keys"
+    },
+    {
+      "expected": {
+        "keys": [
+          "b",
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "b",
+            [
+              "1",
+              "2"
+            ]
+          ],
+          [
+            "a",
+            [
+              "1",
+              "2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "b",
+            [
+              "1",
+              "2"
+            ]
+          ],
+          [
+            "a",
+            [
+              "1",
+              "2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "b=1&b=2&a=1&a=2",
+        "urlencode_doseq_masked": "b=%3Cmasked%3E&b=%3Cmasked%3E&a=%3Cmasked%3E&a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "b=1&a=1&b=2&a=2"
+      },
+      "name": "repeated-keys-interleaved"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1;b=2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1;b=2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1%3Bb%3D2",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1;b=2"
+      },
+      "name": "semicolon"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a",
+          "c"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1;b=2"
+            ]
+          ],
+          [
+            "c",
+            [
+              "3"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1;b=2"
+            ]
+          ],
+          [
+            "c",
+            [
+              "3"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1%3Bb%3D2&c=3",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&c=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1;b=2&c=3"
+      },
+      "name": "semicolon-in-value"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              ";"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              ";"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%3B",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%3B"
+      },
+      "name": "semicolon-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a",
+          "b"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "&"
+            ]
+          ],
+          [
+            "b",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "&"
+            ]
+          ],
+          [
+            "b",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%26&b=2",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&b=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%26&b=2"
+      },
+      "name": "ampersand-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "€"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "€"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%E2%82%AC",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%e2%82%ac"
+      },
+      "name": "percent-lowercase-hex"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "%zz"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "%zz"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%25zz",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%zz"
+      },
+      "name": "percent-invalid-seq"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "%4"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "%4"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%254",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%4"
+      },
+      "name": "percent-truncated"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "%"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "%"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%25",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%"
+      },
+      "name": "percent-lone"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "�"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "�"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%EF%BF%BD",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%E9"
+      },
+      "name": "invalid-utf8"
+    },
+    {
+      "expected": {
+        "keys": [
+          "�"
+        ],
+        "parse_qs": [
+          [
+            "�",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "�",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "%EF%BF%BD=1",
+        "urlencode_doseq_masked": "%EF%BF%BD=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "%E9=1"
+      },
+      "name": "invalid-utf8-key"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "\u0000"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "\u0000"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%00",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%00"
+      },
+      "name": "percent-nul"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "\n\r"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "\n\r"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%0A%0D",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%0A%0D"
+      },
+      "name": "percent-newline"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "b c"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "b c"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=b+c",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=b c"
+      },
+      "name": "raw-space"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "b\tc"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "b\tc"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=b%09c",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=b\tc"
+      },
+      "name": "raw-tab"
+    },
+    {
+      "expected": {
+        "keys": [
+          "?a"
+        ],
+        "parse_qs": [
+          [
+            "?a",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "?a",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "%3Fa=1",
+        "urlencode_doseq_masked": "%3Fa=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "?a=1"
+      },
+      "name": "leading-question-mark"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1#b"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1#b"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1%23b",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1#b"
+      },
+      "name": "hash-fragment-like"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "",
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=&a=1",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=&a=1"
+      },
+      "name": "dup-blank-then-value"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a",
+          "A"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ],
+          [
+            "A",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1"
+            ]
+          ],
+          [
+            "A",
+            [
+              "2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1&A=2",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E&A=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1&A=2"
+      },
+      "name": "same-key-different-case"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a b"
+        ],
+        "parse_qs": [
+          [
+            "a b",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a b",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a+b=1",
+        "urlencode_doseq_masked": "a+b=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a+b=1"
+      },
+      "name": "space-key"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a+b"
+        ],
+        "parse_qs": [
+          [
+            "a+b",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a+b",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a%2Bb=1",
+        "urlencode_doseq_masked": "a%2Bb=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a%2Bb=1"
+      },
+      "name": "percent-key-plus"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "~.-_"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "~.-_"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=~.-_",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=~.-_"
+      },
+      "name": "tilde-dot-dash-underscore"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "~"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "~"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=~",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=%7E"
+      },
+      "name": "tilde-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "$,:@"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "$,:@"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%24%2C%3A%40",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=$,:@"
+      },
+      "name": "dollar-comma-colon-at"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "name": "long-value"
+    },
+    {
+      "expected": {
+        "keys": [
+          "k0",
+          "k1",
+          "k2",
+          "k3",
+          "k4",
+          "k5",
+          "k6",
+          "k7",
+          "k8",
+          "k9",
+          "k10",
+          "k11"
+        ],
+        "parse_qs": [
+          [
+            "k0",
+            [
+              "v0"
+            ]
+          ],
+          [
+            "k1",
+            [
+              "v1"
+            ]
+          ],
+          [
+            "k2",
+            [
+              "v2"
+            ]
+          ],
+          [
+            "k3",
+            [
+              "v3"
+            ]
+          ],
+          [
+            "k4",
+            [
+              "v4"
+            ]
+          ],
+          [
+            "k5",
+            [
+              "v5"
+            ]
+          ],
+          [
+            "k6",
+            [
+              "v6"
+            ]
+          ],
+          [
+            "k7",
+            [
+              "v7"
+            ]
+          ],
+          [
+            "k8",
+            [
+              "v8"
+            ]
+          ],
+          [
+            "k9",
+            [
+              "v9"
+            ]
+          ],
+          [
+            "k10",
+            [
+              "v10"
+            ]
+          ],
+          [
+            "k11",
+            [
+              "v11"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "k0",
+            [
+              "v0"
+            ]
+          ],
+          [
+            "k1",
+            [
+              "v1"
+            ]
+          ],
+          [
+            "k2",
+            [
+              "v2"
+            ]
+          ],
+          [
+            "k3",
+            [
+              "v3"
+            ]
+          ],
+          [
+            "k4",
+            [
+              "v4"
+            ]
+          ],
+          [
+            "k5",
+            [
+              "v5"
+            ]
+          ],
+          [
+            "k6",
+            [
+              "v6"
+            ]
+          ],
+          [
+            "k7",
+            [
+              "v7"
+            ]
+          ],
+          [
+            "k8",
+            [
+              "v8"
+            ]
+          ],
+          [
+            "k9",
+            [
+              "v9"
+            ]
+          ],
+          [
+            "k10",
+            [
+              "v10"
+            ]
+          ],
+          [
+            "k11",
+            [
+              "v11"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "k0=v0&k1=v1&k2=v2&k3=v3&k4=v4&k5=v5&k6=v6&k7=v7&k8=v8&k9=v9&k10=v10&k11=v11",
+        "urlencode_doseq_masked": "k0=%3Cmasked%3E&k1=%3Cmasked%3E&k2=%3Cmasked%3E&k3=%3Cmasked%3E&k4=%3Cmasked%3E&k5=%3Cmasked%3E&k6=%3Cmasked%3E&k7=%3Cmasked%3E&k8=%3Cmasked%3E&k9=%3Cmasked%3E&k10=%3Cmasked%3E&k11=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "k0=v0&k1=v1&k2=v2&k3=v3&k4=v4&k5=v5&k6=v6&k7=v7&k8=v8&k9=v9&k10=v10&k11=v11"
+      },
+      "name": "many-keys"
+    },
+    {
+      "expected": {
+        "keys": [
+          "b",
+          "2",
+          "1"
+        ],
+        "parse_qs": [
+          [
+            "b",
+            [
+              "1"
+            ]
+          ],
+          [
+            "2",
+            [
+              "1"
+            ]
+          ],
+          [
+            "1",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "b",
+            [
+              "1"
+            ]
+          ],
+          [
+            "2",
+            [
+              "1"
+            ]
+          ],
+          [
+            "1",
+            [
+              "1"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "b=1&2=1&1=1",
+        "urlencode_doseq_masked": "b=%3Cmasked%3E&2=%3Cmasked%3E&1=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "b=1&2=1&1=1"
+      },
+      "name": "numeric-keys-order"
+    },
+    {
+      "expected": {
+        "keys": [
+          ""
+        ],
+        "parse_qs": [
+          [
+            "",
+            [
+              "1",
+              "2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "",
+            [
+              "1",
+              "2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "=1&=2",
+        "urlencode_doseq_masked": "=%3Cmasked%3E&=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "=1&=2"
+      },
+      "name": "empty-key-with-value"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a=b"
+        ],
+        "parse_qs": [
+          [
+            "a=b",
+            [
+              "c"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a=b",
+            [
+              "c"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a%3Db=c",
+        "urlencode_doseq_masked": "a%3Db=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a%3Db=c"
+      },
+      "name": "key-with-equals-encoded"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "100%"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "100%"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=100%25",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=100%25"
+      },
+      "name": "value-with-percent-literal"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "1\r\nb=2"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "1\r\nb=2"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=1%0D%0Ab%3D2",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=1\r\nb=2"
+      },
+      "name": "crlf-inside"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "ＡＢ"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "ＡＢ"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=%EF%BC%A1%EF%BC%A2",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=ＡＢ"
+      },
+      "name": "fullwidth-chars"
+    },
+    {
+      "expected": {
+        "keys": [
+          "a"
+        ],
+        "parse_qs": [
+          [
+            "a",
+            [
+              "é"
+            ]
+          ]
+        ],
+        "parse_qs_drop_blank": [
+          [
+            "a",
+            [
+              "é"
+            ]
+          ]
+        ],
+        "urlencode_doseq": "a=e%CC%81",
+        "urlencode_doseq_masked": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "query": "a=é"
+      },
+      "name": "combining"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a+b=c+d"
+      },
+      "input": {
+        "pairs": [
+          [
+            "a b",
+            [
+              "c d"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-space-plus"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a%2Bb=c%2Bd"
+      },
+      "input": {
+        "pairs": [
+          [
+            "a+b",
+            [
+              "c+d"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-plus"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "k=%21%2A%27%28%29~"
+      },
+      "input": {
+        "pairs": [
+          [
+            "k",
+            [
+              "!*'()~"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-special"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "k=a-._~"
+      },
+      "input": {
+        "pairs": [
+          [
+            "k",
+            [
+              "a-._~"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-unreserved"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "k%2F%3D%26=%2F%3D%26"
+      },
+      "input": {
+        "pairs": [
+          [
+            "k/=&",
+            [
+              "/=&"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-slash-eq-amp"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "caf%C3%A9=%E6%97%A5%E6%9C%AC&caf%C3%A9=%F0%9F%98%80"
+      },
+      "input": {
+        "pairs": [
+          [
+            "café",
+            [
+              "日本",
+              "😀"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-unicode"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a="
+      },
+      "input": {
+        "pairs": [
+          [
+            "a",
+            [
+              ""
+            ]
+          ]
+        ]
+      },
+      "name": "enc-empty"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": ""
+      },
+      "input": {
+        "pairs": [
+          [
+            "a",
+            []
+          ]
+        ]
+      },
+      "name": "enc-empty-list"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a%5B%5D=1&a%5B%5D=2"
+      },
+      "input": {
+        "pairs": [
+          [
+            "a[]",
+            [
+              "1",
+              "2"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-brackets"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a=%3Cmasked%3E"
+      },
+      "input": {
+        "pairs": [
+          [
+            "a",
+            [
+              "<masked>"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-masked-literal"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a=100%25"
+      },
+      "input": {
+        "pairs": [
+          [
+            "a",
+            [
+              "100%"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-percent"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a=x%0Ay%0D%0A"
+      },
+      "input": {
+        "pairs": [
+          [
+            "a",
+            [
+              "x\ny\r\n"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-newline"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "a=%24%2C%3A%40%3B"
+      },
+      "input": {
+        "pairs": [
+          [
+            "a",
+            [
+              "$,:@;"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-dollar-comma-colon-at-semicolon"
+    },
+    {
+      "expected": {
+        "urlencode_doseq": "z=1&a=2&a=3&m=4"
+      },
+      "input": {
+        "pairs": [
+          [
+            "z",
+            [
+              "1"
+            ]
+          ],
+          [
+            "a",
+            [
+              "2",
+              "3"
+            ]
+          ],
+          [
+            "m",
+            [
+              "4"
+            ]
+          ]
+        ]
+      },
+      "name": "enc-multi-key-order"
+    }
+  ],
+  "description": "urllib.parse.parse_qs(keep_blank_values=True) (ordered [key, values] pairs; dict insertion order = first occurrence) and urlencode(doseq=True) of the parsed result (quote_plus: space becomes +, safe set is letters digits _.-~). Cases with input.pairs exercise urlencode only. parse_qs_drop_blank is parse_qs without keep_blank_values for contrast.",
+  "source": "urllib.parse.parse_qs, urllib.parse.urlencode"
+}

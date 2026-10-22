@@ -1,0 +1,19 @@
+{
+  "name": "stubsmith-express-example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An Express service instrumented with the Stubsmith Node SDK, with an offline replay test",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "express": "^4.19.0",
+    "stubsmith": "file:../.."
+  }
+}

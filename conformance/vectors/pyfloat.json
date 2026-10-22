@@ -1,0 +1,691 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "json_dumps": "1.0",
+        "repr": "1.0",
+        "str": "1.0"
+      },
+      "input": {
+        "value": {
+          "text": "1.0",
+          "type": "float"
+        }
+      },
+      "name": "float-1.0"
+    },
+    {
+      "expected": {
+        "json_dumps": "1.5",
+        "repr": "1.5",
+        "str": "1.5"
+      },
+      "input": {
+        "value": {
+          "text": "1.5",
+          "type": "float"
+        }
+      },
+      "name": "float-1.5"
+    },
+    {
+      "expected": {
+        "json_dumps": "0.1",
+        "repr": "0.1",
+        "str": "0.1"
+      },
+      "input": {
+        "value": {
+          "text": "0.1",
+          "type": "float"
+        }
+      },
+      "name": "float-0.1"
+    },
+    {
+      "expected": {
+        "json_dumps": "0.30000000000000004",
+        "repr": "0.30000000000000004",
+        "str": "0.30000000000000004"
+      },
+      "input": {
+        "value": {
+          "text": "0.30000000000000004",
+          "type": "float"
+        }
+      },
+      "name": "float-0.1p0.2"
+    },
+    {
+      "expected": {
+        "json_dumps": "1e+16",
+        "repr": "1e+16",
+        "str": "1e+16"
+      },
+      "input": {
+        "value": {
+          "text": "1e+16",
+          "type": "float"
+        }
+      },
+      "name": "float-1e16"
+    },
+    {
+      "expected": {
+        "json_dumps": "1000000000000000.0",
+        "repr": "1000000000000000.0",
+        "str": "1000000000000000.0"
+      },
+      "input": {
+        "value": {
+          "text": "1000000000000000.0",
+          "type": "float"
+        }
+      },
+      "name": "float-1e15"
+    },
+    {
+      "expected": {
+        "json_dumps": "1.2345678901234568e+20",
+        "repr": "1.2345678901234568e+20",
+        "str": "1.2345678901234568e+20"
+      },
+      "input": {
+        "value": {
+          "text": "1.2345678901234568e+20",
+          "type": "float"
+        }
+      },
+      "name": "float-123456789012345680000"
+    },
+    {
+      "expected": {
+        "json_dumps": "1e-07",
+        "repr": "1e-07",
+        "str": "1e-07"
+      },
+      "input": {
+        "value": {
+          "text": "1e-07",
+          "type": "float"
+        }
+      },
+      "name": "float-1e-7"
+    },
+    {
+      "expected": {
+        "json_dumps": "5e-324",
+        "repr": "5e-324",
+        "str": "5e-324"
+      },
+      "input": {
+        "value": {
+          "text": "5e-324",
+          "type": "float"
+        }
+      },
+      "name": "float-5e-324"
+    },
+    {
+      "expected": {
+        "json_dumps": "1.7976931348623157e+308",
+        "repr": "1.7976931348623157e+308",
+        "str": "1.7976931348623157e+308"
+      },
+      "input": {
+        "value": {
+          "text": "1.7976931348623157e+308",
+          "type": "float"
+        }
+      },
+      "name": "float-max"
+    },
+    {
+      "expected": {
+        "json_dumps": "-0.0",
+        "repr": "-0.0",
+        "str": "-0.0"
+      },
+      "input": {
+        "value": {
+          "text": "-0.0",
+          "type": "float"
+        }
+      },
+      "name": "float-neg-zero"
+    },
+    {
+      "expected": {
+        "json_dumps": "1e+22",
+        "repr": "1e+22",
+        "str": "1e+22"
+      },
+      "input": {
+        "value": {
+          "text": "1e+22",
+          "type": "float"
+        }
+      },
+      "name": "float-1e22"
+    },
+    {
+      "expected": {
+        "json_dumps": "1e+21",
+        "repr": "1e+21",
+        "str": "1e+21"
+      },
+      "input": {
+        "value": {
+          "text": "1e+21",
+          "type": "float"
+        }
+      },
+      "name": "float-1e21"
+    },
+    {
+      "expected": {
+        "json_dumps": "0.0001",
+        "repr": "0.0001",
+        "str": "0.0001"
+      },
+      "input": {
+        "value": {
+          "text": "0.0001",
+          "type": "float"
+        }
+      },
+      "name": "float-1e-4"
+    },
+    {
+      "expected": {
+        "json_dumps": "1e-05",
+        "repr": "1e-05",
+        "str": "1e-05"
+      },
+      "input": {
+        "value": {
+          "text": "1e-05",
+          "type": "float"
+        }
+      },
+      "name": "float-1e-5"
+    },
+    {
+      "expected": {
+        "json_dumps": "0.0001234",
+        "repr": "0.0001234",
+        "str": "0.0001234"
+      },
+      "input": {
+        "value": {
+          "text": "0.0001234",
+          "type": "float"
+        }
+      },
+      "name": "float-0.0001234"
+    },
+    {
+      "expected": {
+        "json_dumps": "1.5e+300",
+        "repr": "1.5e+300",
+        "str": "1.5e+300"
+      },
+      "input": {
+        "value": {
+          "text": "1.5e+300",
+          "type": "float"
+        }
+      },
+      "name": "float-1.5e300"
+    },
+    {
+      "expected": {
+        "json_dumps": "9007199254740992.0",
+        "repr": "9007199254740992.0",
+        "str": "9007199254740992.0"
+      },
+      "input": {
+        "value": {
+          "text": "9007199254740992.0",
+          "type": "float"
+        }
+      },
+      "name": "float-2pow53"
+    },
+    {
+      "expected": {
+        "json_dumps": "9007199254740992.0",
+        "repr": "9007199254740992.0",
+        "str": "9007199254740992.0"
+      },
+      "input": {
+        "value": {
+          "text": "9007199254740992.0",
+          "type": "float"
+        }
+      },
+      "name": "float-9007199254740993"
+    },
+    {
+      "expected": {
+        "json_dumps": "100.0",
+        "repr": "100.0",
+        "str": "100.0"
+      },
+      "input": {
+        "value": {
+          "text": "100.0",
+          "type": "float"
+        }
+      },
+      "name": "float-100.0"
+    },
+    {
+      "expected": {
+        "json_dumps": "-1.5",
+        "repr": "-1.5",
+        "str": "-1.5"
+      },
+      "input": {
+        "value": {
+          "text": "-1.5",
+          "type": "float"
+        }
+      },
+      "name": "float-neg-1.5"
+    },
+    {
+      "expected": {
+        "json_dumps": "3.14159",
+        "repr": "3.14159",
+        "str": "3.14159"
+      },
+      "input": {
+        "value": {
+          "text": "3.14159",
+          "type": "float"
+        }
+      },
+      "name": "float-3.14159"
+    },
+    {
+      "expected": {
+        "json_dumps": "1e+100",
+        "repr": "1e+100",
+        "str": "1e+100"
+      },
+      "input": {
+        "value": {
+          "text": "1e+100",
+          "type": "float"
+        }
+      },
+      "name": "float-1e100"
+    },
+    {
+      "expected": {
+        "json_dumps": "123456.789",
+        "repr": "123456.789",
+        "str": "123456.789"
+      },
+      "input": {
+        "value": {
+          "text": "123456.789",
+          "type": "float"
+        }
+      },
+      "name": "float-123456.789"
+    },
+    {
+      "expected": {
+        "json_dumps": "0.5",
+        "repr": "0.5",
+        "str": "0.5"
+      },
+      "input": {
+        "value": {
+          "text": "0.5",
+          "type": "float"
+        }
+      },
+      "name": "float-0.5"
+    },
+    {
+      "expected": {
+        "json_dumps": "1.2345678901234568e+16",
+        "repr": "1.2345678901234568e+16",
+        "str": "1.2345678901234568e+16"
+      },
+      "input": {
+        "value": {
+          "text": "1.2345678901234568e+16",
+          "type": "float"
+        }
+      },
+      "name": "float-12345678901234567.0"
+    },
+    {
+      "expected": {
+        "json_dumps": "1e-323",
+        "repr": "1e-323",
+        "str": "1e-323"
+      },
+      "input": {
+        "value": {
+          "text": "1e-323",
+          "type": "float"
+        }
+      },
+      "name": "float-1e-323"
+    },
+    {
+      "expected": {
+        "json_dumps": "2.2250738585072014e-308",
+        "repr": "2.2250738585072014e-308",
+        "str": "2.2250738585072014e-308"
+      },
+      "input": {
+        "value": {
+          "text": "2.2250738585072014e-308",
+          "type": "float"
+        }
+      },
+      "name": "float-2.2250738585072014e-308"
+    },
+    {
+      "expected": {
+        "json_dumps": "0",
+        "repr": "0",
+        "str": "0"
+      },
+      "input": {
+        "value": {
+          "text": "0",
+          "type": "int"
+        }
+      },
+      "name": "int-0"
+    },
+    {
+      "expected": {
+        "json_dumps": "1",
+        "repr": "1",
+        "str": "1"
+      },
+      "input": {
+        "value": {
+          "text": "1",
+          "type": "int"
+        }
+      },
+      "name": "int-1"
+    },
+    {
+      "expected": {
+        "json_dumps": "-42",
+        "repr": "-42",
+        "str": "-42"
+      },
+      "input": {
+        "value": {
+          "text": "-42",
+          "type": "int"
+        }
+      },
+      "name": "int-neg"
+    },
+    {
+      "expected": {
+        "json_dumps": "9007199254740992",
+        "repr": "9007199254740992",
+        "str": "9007199254740992"
+      },
+      "input": {
+        "value": {
+          "text": "9007199254740992",
+          "type": "int"
+        }
+      },
+      "name": "int-2pow53"
+    },
+    {
+      "expected": {
+        "json_dumps": "9007199254740993",
+        "repr": "9007199254740993",
+        "str": "9007199254740993"
+      },
+      "input": {
+        "value": {
+          "text": "9007199254740993",
+          "type": "int"
+        }
+      },
+      "name": "int-2pow53p1"
+    },
+    {
+      "expected": {
+        "json_dumps": "9223372036854775808",
+        "repr": "9223372036854775808",
+        "str": "9223372036854775808"
+      },
+      "input": {
+        "value": {
+          "text": "9223372036854775808",
+          "type": "int"
+        }
+      },
+      "name": "int-2pow63"
+    },
+    {
+      "expected": {
+        "json_dumps": "18446744073709551616",
+        "repr": "18446744073709551616",
+        "str": "18446744073709551616"
+      },
+      "input": {
+        "value": {
+          "text": "18446744073709551616",
+          "type": "int"
+        }
+      },
+      "name": "int-2pow64"
+    },
+    {
+      "expected": {
+        "json_dumps": "100000000000000000000",
+        "repr": "100000000000000000000",
+        "str": "100000000000000000000"
+      },
+      "input": {
+        "value": {
+          "text": "100000000000000000000",
+          "type": "int"
+        }
+      },
+      "name": "int-10pow20"
+    },
+    {
+      "expected": {
+        "json_dumps": "-9223372036854775808",
+        "repr": "-9223372036854775808",
+        "str": "-9223372036854775808"
+      },
+      "input": {
+        "value": {
+          "text": "-9223372036854775808",
+          "type": "int"
+        }
+      },
+      "name": "int-neg-2pow63"
+    },
+    {
+      "expected": {
+        "json_dumps": "1000000000000000000000000000000",
+        "repr": "1000000000000000000000000000000",
+        "str": "1000000000000000000000000000000"
+      },
+      "input": {
+        "value": {
+          "text": "1000000000000000000000000000000",
+          "type": "int"
+        }
+      },
+      "name": "int-10pow30"
+    },
+    {
+      "expected": {
+        "json_dumps": "true",
+        "repr": "True",
+        "str": "True"
+      },
+      "input": {
+        "value": {
+          "type": "bool",
+          "value": true
+        }
+      },
+      "name": "bool-true"
+    },
+    {
+      "expected": {
+        "json_dumps": "false",
+        "repr": "False",
+        "str": "False"
+      },
+      "input": {
+        "value": {
+          "type": "bool",
+          "value": false
+        }
+      },
+      "name": "bool-false"
+    },
+    {
+      "expected": {
+        "json_dumps": "null",
+        "repr": "None",
+        "str": "None"
+      },
+      "input": {
+        "value": {
+          "type": "none"
+        }
+      },
+      "name": "none"
+    },
+    {
+      "expected": {
+        "json_dumps": "\"x\"",
+        "repr": "'x'",
+        "str": "x"
+      },
+      "input": {
+        "value": {
+          "type": "str",
+          "value": "x"
+        }
+      },
+      "name": "str-x"
+    },
+    {
+      "expected": {
+        "json_dumps": "\"\"",
+        "repr": "''",
+        "str": ""
+      },
+      "input": {
+        "value": {
+          "type": "str",
+          "value": ""
+        }
+      },
+      "name": "str-empty"
+    },
+    {
+      "expected": {
+        "json_dumps": "\"caf\\u00e9 \\ud83d\\ude00\"",
+        "repr": "'café 😀'",
+        "str": "café 😀"
+      },
+      "input": {
+        "value": {
+          "type": "str",
+          "value": "café 😀"
+        }
+      },
+      "name": "str-unicode"
+    },
+    {
+      "expected": {
+        "json_dumps": "\"a\\\"b\\\\c\\n\"",
+        "repr": "'a\"b\\\\c\\n'",
+        "str": "a\"b\\c\n"
+      },
+      "input": {
+        "value": {
+          "type": "str",
+          "value": "a\"b\\c\n"
+        }
+      },
+      "name": "str-quote"
+    },
+    {
+      "expected": {
+        "json_dumps": "\"\\u0001\\u007f\\u2028\"",
+        "repr": "'\\x01\\x7f\\u2028'",
+        "str": "\u0001 "
+      },
+      "input": {
+        "value": {
+          "type": "str",
+          "value": "\u0001 "
+        }
+      },
+      "name": "str-control"
+    },
+    {
+      "expected": {
+        "json_dumps": "NaN",
+        "repr": "nan",
+        "str": "nan"
+      },
+      "input": {
+        "value": {
+          "text": "nan",
+          "type": "float"
+        }
+      },
+      "name": "float-nan"
+    },
+    {
+      "expected": {
+        "json_dumps": "Infinity",
+        "repr": "inf",
+        "str": "inf"
+      },
+      "input": {
+        "value": {
+          "text": "inf",
+          "type": "float"
+        }
+      },
+      "name": "float-inf"
+    },
+    {
+      "expected": {
+        "json_dumps": "-Infinity",
+        "repr": "-inf",
+        "str": "-inf"
+      },
+      "input": {
+        "value": {
+          "text": "-inf",
+          "type": "float"
+        }
+      },
+      "name": "float-neg-inf"
+    }
+  ],
+  "description": "Python json.dumps(value) and str(value) output (str() feeds placeholder hashing; json.dumps feeds canonical value pairs and masked bodies). input.value uses the typed encoding; float/int text is Python repr / decimal digits.",
+  "source": "json.dumps, str, repr"
+}
