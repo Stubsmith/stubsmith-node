@@ -6,6 +6,7 @@
  *     const fxs = await fixtures("POST /v1/charges/{id}", { distinct: "status" });
  *     fxs[0].response.json();
  */
+import { checkEndpoint } from "./endpoint.js";
 import { resolveFixturesApiUrl } from "./env.js";
 import { sendRequest } from "./transport.js";
 
@@ -129,6 +130,7 @@ export async function fixturesBundle(spec: string, opts: FixturesOptions = {}): 
   const params = new URLSearchParams({ method: method.toUpperCase(), path });
   if (opts.distinct !== undefined) params.set("distinct", opts.distinct);
   if (opts.limit !== undefined) params.set("limit", String(opts.limit));
+  checkEndpoint(base);
   const url = `${base.replace(/\/+$/, "")}/v1/fixtures?${params.toString()}`;
 
   let res;

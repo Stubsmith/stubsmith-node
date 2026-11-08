@@ -50,7 +50,7 @@ await axios.get('https://api.example.com/users');
 Or configure via environment variables and call `install()` with no arguments:
 
 ```bash
-export STUBSMITH_URL="http://ingest:8081/v1/captures"
+export STUBSMITH_URL="https://ingest.stubsmith.dev/v1/captures"
 export STUBSMITH_API_KEY="sk-your-project-key"
 ```
 
@@ -115,6 +115,13 @@ The SDK's own traffic to the ingest and rules hosts is never captured.
 Both are overridable (`url` and `backendUrl`) for a project pointed at a
 different environment.  The rules timer is `unref()`ed, so the SDK never keeps
 your process alive.
+
+The SDK sends only over https. A plain `http://` URL is accepted only for
+`localhost`, `127.0.0.1` and `::1`, for a backend on your own machine. With any
+other `http://` URL for `url` or `backendUrl`, `install()` logs a warning and
+capture stays off, so nothing is sent; `stubsmith pull`, `fetchBundle()` and
+`fixtures()` throw an error instead. The SDK never follows a redirect: a 3xx
+answer is treated as an error, so the API key is never re-sent to another URL.
 
 ---
 

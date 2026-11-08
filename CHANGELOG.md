@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1
+
+- Changed: the SDK sends only over https. Captures, the rules sync, `stubsmith pull`, `fetchBundle()` and `fixtures()` used to send to any URL they were given, including a plain `http://` one, so a mistyped `STUBSMITH_URL` sent captures and the API key unencrypted. A plain `http://` URL is now accepted only for `localhost`, `127.0.0.1` and `::1`. With any other `http://` URL for `url` or `backendUrl`, `install()` logs a warning and capture stays off, and nothing is sent. `stubsmith pull`, `fetchBundle()` and `fixtures()` throw an error. The error message names only the scheme and host, never credentials in the URL. What to check: if you point the SDK at your own backend over plain http on another host, put it behind https.
+- Changed: a 3xx answer from the ingest endpoint now counts as a failed send. The SDK never follows redirects, so a capture answered with a redirect was not delivered, but it was counted as sent.
+
 ## 0.2.0
 
 - Changed: requires Node.js 22.12 or later. Node.js 18 and 20 are end-of-life, and the test tooling no longer runs on them.

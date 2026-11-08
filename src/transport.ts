@@ -7,11 +7,16 @@
  * explicit, so nothing of the SDK's keeps a finished application alive. The
  * request is created inside `captureGuard.run`, so the capture hooks skip it.
  *
+ * Redirects are never followed: `http.request` does not follow them, and the
+ * 3xx comes back to the caller as the status. Following one would re-send the
+ * `authorization` header to wherever it points, plaintext or a foreign host.
+ *
  * Callers whose request IS the work (the `pull` CLI, `fixtures()`) set
  * `holdProcess`: the socket and the deadline timer stay ref'd so the process
  * lives until the response arrives.
  */
 import type { ClientRequest, IncomingHttpHeaders } from "node:http";
+import { checkEndpoint } from "./endpoint.js";
 import { ORIGINAL_REQUEST, captureGuard } from "./replayState.js";
 
 export interface TransportOptions {
@@ -89,6 +94,12 @@ export function sendRequest(url: string, opts: TransportOptions): Transport {
     let u: URL;
     try {
       u = new URL(url);
+    } catch (err) {
+      fail(err);
+      return;
+    }
+    try {
+      checkEndpoint(url);
     } catch (err) {
       fail(err);
       return;
