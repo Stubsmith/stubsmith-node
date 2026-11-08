@@ -8,6 +8,7 @@
  * Nothing here ever throws into the host application.
  */
 import { gzipSync } from "node:zlib";
+import { checkEndpoint } from "./endpoint.js";
 import { DEFAULT_BACKEND_URL, DEFAULT_URL, debugLog, isDebug, readEnv, setDebug } from "./env.js";
 import { PrivacyPipeline, RulesCache, templatePath } from "./privacy/index.js";
 import { INGEST_ERROR_READ_BYTES, reportIngestRefusal } from "./refusals.js";
@@ -141,9 +142,25 @@ export class StubsmithClient {
     counters.set(this, this.counts);
     const env = readEnv();
     this.apiKey = options.apiKey || env.apiKey;
-    this.enabled = Boolean(this.apiKey);
     this.url = options.url || env.url || DEFAULT_URL;
     this.backendUrl = options.backendUrl || env.backendUrl || DEFAULT_BACKEND_URL;
+    // A plaintext ingest or backend URL turns capture off rather than throwing: a bad environment
+    // variable must not stop the host application from starting, and nothing is sent.
+    let secure = true;
+    if (this.apiKey) {
+      try {
+        checkEndpoint(this.url);
+        checkEndpoint(this.backendUrl);
+      } catch (err) {
+        secure = false;
+        try {
+          console.warn(`${err instanceof Error ? err.message : String(err)} Capture is off.`);
+        } catch {
+          // never break the host
+        }
+      }
+    }
+    this.enabled = Boolean(this.apiKey) && secure;
     this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
     const sr = options.sampleRate ?? 1;
     this.sampleRate = Number.isNaN(sr) ? 1 : Math.max(0, Math.min(1, sr));
@@ -417,7 +434,8 @@ export class StubsmithClient {
         if (this.inflight === t) this.inflight = null;
       }
       reportIngestRefusal(res.body, res.status, this.debug);
-      if (res.status >= 400) {
+      // A 3xx is a failure too: redirects are never followed (see transport.ts).
+      if (res.status >= 300) {
         this.sendFailures++;
         debugLog(`send failed - status=${res.status} url=${this.url}`);
       }

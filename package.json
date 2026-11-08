@@ -1,6 +1,6 @@
 {
   "name": "stubsmith",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Stubsmith Node.js SDK - instrument outbound HTTP calls, mask in-process, replay as test fixtures",
   "license": "MIT",
   "type": "module",

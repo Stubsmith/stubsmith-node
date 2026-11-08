@@ -11,6 +11,7 @@ import { VERSION } from "./_version.js";
 import { DEFAULT_BACKEND_URL, resolveApiUrl } from "./env.js";
 import { compareCodePoints } from "./internal/codepoint.js";
 import type { Bundle } from "./replay/bundle.js";
+import { checkEndpoint } from "./endpoint.js";
 import { sendRequest } from "./transport.js";
 
 const TIMEOUT_MS = 30_000;
@@ -120,6 +121,7 @@ async function fetchOne(
   if (method) params.set("method", method);
   if (p) params.set("path", p);
   if (samples !== null) params.set("samples", samples);
+  checkEndpoint(apiUrl);
   const qs = [...params].length > 0 ? `?${params.toString()}` : "";
   const url = `${apiUrl.replace(/\/+$/, "")}/v1/replay/bundle${qs}`;
 
