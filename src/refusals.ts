@@ -37,10 +37,40 @@ export const INGEST_ERROR_READ_BYTES = 64 * 1024;
 export const INGEST_MAX_WARNED_CODES = 64;
 
 const warnedCodes = new Set<string>();
+// Its own flag rather than warnOnce: that one has a cap shared with per-endpoint
+// keys, which could use it up and silence this warning. One flag for ingest and
+// the rules sync together, so a bad key warns once per process.
+let rejectedKeyWarned = false;
 
 /** Test hook: forget which refusal codes were already warned about. */
 export function resetIngestWarningsForTests(): void {
   warnedCodes.clear();
+}
+
+/** Test hook: let the rejected-key warning fire again. */
+export function resetRejectedKeyWarningForTests(): void {
+  rejectedKeyWarned = false;
+}
+
+/**
+ * Warn once per process, across ingest and the rules sync, when the server
+ * answers 401 or 403. The status code alone decides, whatever the body says.
+ * The message holds the status only: never the API key, a URL or the body.
+ * Never throws.
+ */
+export function reportRejectedKey(status: unknown): void {
+  try {
+    if (status !== 401 && status !== 403) return;
+    if (rejectedKeyWarned) return;
+    rejectedKeyWarned = true;
+    console.warn(
+      `stubsmith: the API key was rejected (HTTP ${status}). Nothing is recorded until the key is fixed. ` +
+        "Check the apiKey option or the STUBSMITH_API_KEY environment variable. " +
+        "See https://docs.stubsmith.dev/#capturing. Reported once per process.",
+    );
+  } catch {
+    // reporting must never break the sender
+  }
 }
 
 /** First `n` code points (Python `s[:n]`). */
