@@ -155,7 +155,8 @@ The approved rules are fetched from the rules API and re-polled every
 failed sync keeps the last known-good rules and never stops capture.  Because
 masking is fail-closed, a client that has never reached the API masks everything
 and still delivers captures: you get `novel=true` and no cleartext, not silence.
-A rejected key (`401`) behaves the same way.
+With a rejected key (`401` or `403`) nothing is recorded, because ingest rejects
+the same key, and the SDK logs one warning per process.
 
 A payload without the SDK's masked marker is rejected by the ingest service with
 `400 sdk_required`, so an unmasked body cannot be posted through that endpoint at

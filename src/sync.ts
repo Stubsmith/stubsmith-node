@@ -10,6 +10,7 @@
  */
 import { VERSION } from "./_version.js";
 import { debugLog } from "./env.js";
+import { reportRejectedKey } from "./refusals.js";
 import { parseJson } from "./internal/json.js";
 import type { RulesCache } from "./privacy/index.js";
 import { type Transport, sendRequest } from "./transport.js";
@@ -123,6 +124,7 @@ export class RulesPoller {
       }
       return;
     }
+    reportRejectedKey(status);
     if (status === 0) return; // network error: keep the cache
     if (status !== 200 || !(body instanceof Map)) {
       debugLog(`rules-cache: unexpected sync response status=${status} url=${syncUrl}`);

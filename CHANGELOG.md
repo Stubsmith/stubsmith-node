@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+- Added: a warning when the API key is rejected. The first time the ingest endpoint or the rules sync answers `401` or `403`, the SDK logs one `console.warn` per process, also with debug off. It gives the HTTP status, says nothing is recorded until the key is fixed, and points to the `apiKey` option and the `STUBSMITH_API_KEY` environment variable. It never contains the key or a URL. Capture itself is unchanged: the SDK keeps trying, and your responses are not affected.
+
 ## 0.2.1
 
 - Changed: the SDK sends only over https. Captures, the rules sync, `stubsmith pull`, `fetchBundle()` and `fixtures()` used to send to any URL they were given, including a plain `http://` one, so a mistyped `STUBSMITH_URL` sent captures and the API key unencrypted. A plain `http://` URL is now accepted only for `localhost`, `127.0.0.1` and `::1`. With any other `http://` URL for `url` or `backendUrl`, `install()` logs a warning and capture stays off, and nothing is sent. `stubsmith pull`, `fetchBundle()` and `fixtures()` throw an error. The error message names only the scheme and host, never credentials in the URL. What to check: if you point the SDK at your own backend over plain http on another host, put it behind https.

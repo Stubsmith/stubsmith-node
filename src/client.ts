@@ -11,7 +11,7 @@ import { gzipSync } from "node:zlib";
 import { checkEndpoint } from "./endpoint.js";
 import { DEFAULT_BACKEND_URL, DEFAULT_URL, debugLog, isDebug, readEnv, setDebug } from "./env.js";
 import { PrivacyPipeline, RulesCache, templatePath } from "./privacy/index.js";
-import { INGEST_ERROR_READ_BYTES, reportIngestRefusal } from "./refusals.js";
+import { INGEST_ERROR_READ_BYTES, reportIngestRefusal, reportRejectedKey } from "./refusals.js";
 import { replayActive } from "./replayState.js";
 import { RulesPoller, USER_AGENT } from "./sync.js";
 import { type Transport, sendRequest } from "./transport.js";
@@ -433,6 +433,7 @@ export class StubsmithClient {
       } finally {
         if (this.inflight === t) this.inflight = null;
       }
+      reportRejectedKey(res.status);
       reportIngestRefusal(res.body, res.status, this.debug);
       // A 3xx is a failure too: redirects are never followed (see transport.ts).
       if (res.status >= 300) {
